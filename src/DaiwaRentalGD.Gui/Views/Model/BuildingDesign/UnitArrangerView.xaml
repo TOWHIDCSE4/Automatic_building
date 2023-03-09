@@ -1,0 +1,138 @@
+﻿<UserControl x:Class="DaiwaRentalGD.Gui.Views.Model.BuildingDesign.UnitArrangerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="400">
+    <UserControl.Resources>
+        <Thickness x:Key="RowMargin">
+            0 10 0 0
+        </Thickness>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="120" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <!-- Household type -->
+        <Label Grid.Row="0" Grid.Column="0">
+            Household Type
+        </Label>
+        <ComboBox Grid.Row="0" Grid.Column="1"
+                  ItemsSource="{Binding AllHouseholdTypes}"
+                  SelectedItem="{Binding HouseholdType}" />
+
+        <!-- Number of floors -->
+        <Label Grid.Row="1" Grid.Column="0"
+               Margin="{StaticResource RowMargin}">
+            Number of Floors
+        </Label>
+        <StackPanel Grid.Row="1" Grid.Column="1"
+                    Margin="{StaticResource RowMargin}"
+                    Orientation="Vertical">
+            <Slider Minimum="{Binding MinNumOfFloors}"
+                    Maximum="{Binding MaxNumOfFloors}"
+                    Value="{Binding NumOfFloors}"
+                    IsSnapToTickEnabled="True" ValueChanged="Slider_ValueChanged" />
+            <Grid>
+                <Label HorizontalAlignment="Left" Style="{StaticResource SliderTickLabelStyle}">
+                    <TextBlock Text="{Binding MinNumOfFloors}" />
+                </Label>
+                <Label HorizontalAlignment="Right" Style="{StaticResource SliderTickLabelStyle}">
+                    <TextBlock Text="{Binding MaxNumOfFloors}" />
+                </Label>
+                <Label HorizontalAlignment="Center" Style="{StaticResource SliderTickLabelStyle}">
+                    <TextBlock Text="{Binding NumOfFloors}" />
+                </Label>
+            </Grid>
+        </StackPanel>
+
+        <!-- Number of units per floor -->
+        <Label Grid.Row="2" Grid.Column="0"
+               Margin="{StaticResource RowMargin}">
+            Number of Units per Floor
+        </Label>
+        <StackPanel Grid.Row="2" Grid.Column="1"
+                    Margin="{StaticResource RowMargin}"
+                    Orientation="Vertical">
+            <Slider Minimum="{Binding MinNumOfUnitsPerFloor}"
+                    Maximum="{Binding MaxNumOfUnitsPerFloor}"
+                    Value="{Binding NumOfUnitsPerFloor}"
+                    IsSnapToTickEnabled="True" 
+                    />
+            <Grid>
+                <Label HorizontalAlignment="Left" Style="{StaticResource SliderTickLabelStyle}">
+                    <TextBlock Text="{Binding MinNumOfUnitsPerFloor}" />
+                </Label>
+                <Label HorizontalAlignment="Right" Style="{StaticResource SliderTickLabelStyle}">
+                    <TextBlock Text="{Binding MaxNumOfUnitsPerFloor}" />
+                </Label>
+                <Label HorizontalAlignment="Center" Style="{StaticResource SliderTickLabelStyle}">
+                    <TextBlock Text="{Binding NumOfUnitsPerFloor}" />
+                </Label>
+            </Grid>
+        </StackPanel>
+
+        <!-- Stacks -->
+        <Expander Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
+                  Margin="{StaticResource RowMargin}"
+                  IsExpanded="True">
+            <Expander.Header>
+                <Label>Stack Unit Entry Indices</Label>
+            </Expander.Header>
+
+            <ItemsControl ItemsSource="{Binding NormalizedEntryIndexViewModels}"
+                          Margin="{StaticResource ExpanderContentMargin}">
+
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="120" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Row="0" Grid.Column="0"
+                                   Margin="{StaticResource RowMargin}">
+                                <TextBlock>
+                                    <Run>Stack Unit Entry Index</Run>
+                                    <Run Text="{Binding EntryIndexIndex, Mode=OneWay}" />
+                                </TextBlock>
+                            </Label>
+
+                            <StackPanel Grid.Row="0" Grid.Column="1"
+                                        Margin="{StaticResource RowMargin}"
+                                        Orientation="Vertical">
+                                <Slider Minimum="0.0" Maximum="1.0"
+                                        Value="{Binding NormalizedEntryIndex}" />
+                                <Grid>
+                                    <Label HorizontalAlignment="Left" Style="{StaticResource SliderTickLabelStyle}">
+                                        <TextBlock Text="0.0" />
+                                    </Label>
+                                    <Label HorizontalAlignment="Right" Style="{StaticResource SliderTickLabelStyle}">
+                                        <TextBlock Text="1.0" />
+                                    </Label>
+                                    <Label HorizontalAlignment="Center" Style="{StaticResource SliderTickLabelStyle}">
+                                        <TextBlock Text="{Binding NormalizedEntryIndex, StringFormat=N3}" />
+                                    </Label>
+                                </Grid>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Expander>
+    </Grid>
+</UserControl>

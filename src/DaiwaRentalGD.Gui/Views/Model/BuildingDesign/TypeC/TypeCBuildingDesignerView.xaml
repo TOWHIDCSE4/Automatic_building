@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="DaiwaRentalGD.Gui.Views.Model.BuildingDesign.TypeC.TypeCBuildingDesignerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:BuildingDesignViews="clr-namespace:DaiwaRentalGD.Gui.Views.Model.BuildingDesign"
+             xmlns:TypeCViews="clr-namespace:DaiwaRentalGD.Gui.Views.Model.BuildingDesign.TypeC"
+             mc:Ignorable="d" d:DesignWidth="600">
+    <StackPanel>
+        <!-- Siting -->
+        <Expander IsExpanded="True">
+            <Expander.Header>
+                <Label>Siting</Label>
+            </Expander.Header>
+
+            <BuildingDesignViews:BuildingPlacementInputsView
+                Margin="{StaticResource ExpanderContentMargin}"
+                DataContext="{Binding BuildingPlacementViewModel}" />
+        </Expander>
+
+        <!-- Units -->
+        <Expander IsExpanded="True">
+            <Expander.Header>
+                <Label>Units</Label>
+            </Expander.Header>
+
+            <TypeCViews:TypeCUnitArrangerView
+                Margin="{StaticResource ExpanderContentMargin}"
+                DataContext="{Binding UnitArrangerViewModel}"/>
+        </Expander>
+    </StackPanel>
+</UserControl>

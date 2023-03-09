@@ -1,0 +1,150 @@
+﻿<UserControl x:Class="DaiwaRentalGD.Gui.Views.Model.GDModelSceneInputsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:BuildingDesignViews="clr-namespace:DaiwaRentalGD.Gui.Views.Model.BuildingDesign"
+             xmlns:ParkingLotDesignViews="clr-namespace:DaiwaRentalGD.Gui.Views.Model.ParkingLotDesign"
+             xmlns:SiteDesignViews="clr-namespace:DaiwaRentalGD.Gui.Views.Model.SiteDesign"
+             xmlns:FinanceViews="clr-namespace:DaiwaRentalGD.Gui.Views.Model.Finance"
+             mc:Ignorable="d"
+             MinWidth="400"
+             d:DesignWidth="600">
+
+    <UserControl.Resources>
+
+        <Thickness x:Key="TabItemContentScrollViewerPadding">
+            5
+        </Thickness>
+
+    </UserControl.Resources>
+
+    <TabControl Background="Transparent">
+
+        <!-- GIS -->
+
+        <TabItem IsEnabled="False">
+
+            <TabItem.Header>
+                <Label>
+                    &#128274; GIS
+                </Label>
+            </TabItem.Header>
+
+        </TabItem>
+
+        <!-- Unit catalog -->
+
+        <TabItem>
+
+            <TabItem.Header>
+                <Label>
+                    Unit Catalog
+                </Label>
+            </TabItem.Header>
+
+            <ScrollViewer VerticalScrollBarVisibility="Auto"
+                          Padding="{StaticResource TabItemContentScrollViewerPadding}">
+
+                <BuildingDesignViews:UnitCatalogInputsView DataContext="{Binding UnitCatalogInputsViewModel}" />
+
+            </ScrollViewer>
+
+        </TabItem>
+
+        <!-- Site -->
+
+        <TabItem>
+
+            <TabItem.Header>
+
+                <Label>
+                    Site
+                </Label>
+
+            </TabItem.Header>
+
+            <ScrollViewer VerticalScrollBarVisibility="Auto"
+                          HorizontalScrollBarVisibility="Auto"
+                          Padding="{StaticResource TabItemContentScrollViewerPadding}">
+
+                <SiteDesignViews:SiteInputsView DataContext="{Binding SiteInputsViewModel}" />
+
+            </ScrollViewer>
+
+        </TabItem>
+
+        <!-- Building -->
+
+        <TabItem>
+
+            <TabItem.Header>
+                <Label>
+                    Building
+                </Label>
+            </TabItem.Header>
+
+            <ScrollViewer VerticalScrollBarVisibility="Auto"
+                          HorizontalScrollBarVisibility="Auto"
+                          Padding="{StaticResource TabItemContentScrollViewerPadding}">
+
+                <BuildingDesignViews:BuildingInputsView DataContext="{Binding BuildingInputsViewModel}" />
+
+            </ScrollViewer>
+
+        </TabItem>
+
+        <!--  Parking lot -->
+
+        <TabItem IsSelected="True">
+
+            <TabItem.Header>
+                <Label>
+                    Parking Lot
+                </Label>
+
+            </TabItem.Header>
+
+            <ScrollViewer VerticalScrollBarVisibility="Auto"
+                          Padding="{StaticResource TabItemContentScrollViewerPadding}">
+
+                <ParkingLotDesignViews:ParkingLotDesignerView DataContext="{Binding ParkingLotDesignerViewModel}" />
+
+            </ScrollViewer>
+
+        </TabItem>
+
+        <!-- Zoning -->
+
+        <TabItem IsEnabled="False">
+
+            <TabItem.Header>
+                <Label>
+                    &#128274; Zoning
+                </Label>
+            </TabItem.Header>
+
+        </TabItem>
+
+        <!-- Finance -->
+
+        <TabItem>
+
+            <TabItem.Header>
+                <Label>
+                    Finance
+                </Label>
+            </TabItem.Header>
+
+            <ScrollViewer VerticalScrollBarVisibility="Auto"
+                          Padding="{StaticResource TabItemContentScrollViewerPadding}">
+
+                <FinanceViews:FinanceInputsView DataContext="{Binding FinanceInputsViewModel}" />
+
+            </ScrollViewer>
+
+        </TabItem>
+
+    </TabControl>
+
+</UserControl>

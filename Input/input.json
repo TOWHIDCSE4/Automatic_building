@@ -1,0 +1,28 @@
+{
+  "InputParameters": {
+    "BCR_Min": 1.11,
+    "BCR_Max": 9.99,
+    "FAR_Min": 0,
+    "FAR_Max": 0.01,
+    "Site_Slant_Planes_Start_Height": 20.0,
+    "Site_Slant_Planes_Start_Slope": 1.25,
+    "North_Slant_Planes_Start_Height": 5.0,
+    "North_Slant_Planes_Start_Slope": 0.8,
+    "Road_Slant_Planes_Start_Height": 20.0,
+    "Road_Slant_Planes_Start_Slope": 1.25,
+    "Absolute_Height_plane_Height": 10.0,
+    "Use_Staircase_Type_A": 1,
+    "Use_Side_Corridor_Type_B": 0,
+    "Use_Nagaya_Type_C": 0,
+    "Roof_Type": 1,
+    "Building_Rotation_From_North_Min_Degree": 15.7,
+    "Building_Rotation_From_North_Max_Degree": 30.2,
+    "Enable_Building_Rotation_Snapping": 1,
+    "Number_Of_Floors_Min": 2,
+    "Number_Of_Floors_Max": 3,
+    "Units_Per_Floor_Min": 2,
+    "Units_Per_Floor_Max": 3,
+    "Enable_Roadside_Car_Parking": 1,
+    "Enable_Driveway": 1
+  }
+}

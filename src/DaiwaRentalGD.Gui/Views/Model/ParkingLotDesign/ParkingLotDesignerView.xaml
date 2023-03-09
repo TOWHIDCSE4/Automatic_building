@@ -1,0 +1,60 @@
+﻿<UserControl x:Class="DaiwaRentalGD.Gui.Views.Model.ParkingLotDesign.ParkingLotDesignerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ParkingLotDesignViews="clr-namespace:DaiwaRentalGD.Gui.Views.Model.ParkingLotDesign"
+             mc:Ignorable="d" d:DesignWidth="400">
+    <StackPanel>
+
+        <!-- Parking requirements -->
+        <Expander IsExpanded="True">
+            <Expander.Header>
+                <Label>Parking Requirements</Label>
+            </Expander.Header>
+            <ParkingLotDesignViews:ParkingLotRequirementsView
+                Margin="{StaticResource ExpanderContentMargin}"
+                DataContext="{Binding ParkingLotRequirementsViewModel}" />
+        </Expander>
+        
+        <!-- Walkways -->
+        <Expander IsExpanded="True">
+            <Expander.Header>
+                <Label>Walkways</Label>
+            </Expander.Header>
+            <ParkingLotDesignViews:WalkwayDesignerView
+                Margin="{StaticResource ExpanderContentMargin}"
+                DataContext="{Binding WalkwayDesignerViewModel}" />
+        </Expander>
+
+        <!-- Roadsides -->
+        <Expander IsExpanded="True">
+            <Expander.Header>
+                <Label>Roadsides</Label>
+            </Expander.Header>
+            <ParkingLotDesignViews:RoadsideCarParkingAreaDesignerView
+                Margin="{StaticResource ExpanderContentMargin}"
+                DataContext="{Binding RoadsideCarParkingAreaDesignerViewModel}" />
+        </Expander>
+
+        <!-- Driveways -->
+        <Expander IsExpanded="True">
+            <Expander.Header>
+                <Label>Driveways</Label>
+            </Expander.Header>
+            <ParkingLotDesignViews:DrivewayDesignerView
+                Margin="{StaticResource ExpanderContentMargin}"
+                DataContext="{Binding DrivewayDesignerViewModel}" />
+        </Expander>
+        
+        <!-- Bikeways -->
+        <Expander IsExpanded="True">
+            <Expander.Header>
+                <Label>Bikeways</Label>
+            </Expander.Header>
+            <ParkingLotDesignViews:BikewayDesignerView
+                Margin="{StaticResource ExpanderContentMargin}"
+                DataContext="{Binding BikewayDesignerViewModel}" />
+        </Expander>
+    </StackPanel>
+</UserControl>

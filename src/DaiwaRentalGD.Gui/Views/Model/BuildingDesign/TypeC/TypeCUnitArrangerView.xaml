@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="DaiwaRentalGD.Gui.Views.Model.BuildingDesign.TypeC.TypeCUnitArrangerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:BuildingDesignViews="clr-namespace:DaiwaRentalGD.Gui.Views.Model.BuildingDesign"
+             mc:Ignorable="d" d:DesignWidth="400">
+    <UserControl.Resources>
+        <Thickness x:Key="RowMargin">
+            0 10 0 0
+        </Thickness>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0*" />
+            <RowDefinition Height="25*" />
+            <RowDefinition Height="33*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="120" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Grid.Column="0" Margin="0,0,0,25" >
+            Roof Type
+        </Label>
+        <ComboBox Grid.Row="0" Grid.Column="1"
+                  ItemsSource="{Binding AllRoofTypes}"
+                  SelectedItem="{Binding RoofType}" Margin="0,0,0,15" />
+        <Label Grid.Row="1" Grid.Column="0" Margin="0,0,0,25"  >
+            Entrance Type
+        </Label>
+        <ComboBox Grid.Row="1" Grid.Column="1"
+                  ItemsSource="{Binding AllEntranceTypes}"
+                  SelectedItem="{Binding EntranceType}" Margin="0,0,0,15" />
+        <BuildingDesignViews:UnitArrangerView
+            Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+            Margin="{StaticResource RowMargin}" />
+    </Grid>
+</UserControl>

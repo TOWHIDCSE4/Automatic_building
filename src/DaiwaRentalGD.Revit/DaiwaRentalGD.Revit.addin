@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<RevitAddIns>
+    <AddIn Type="Application">
+        <Name>Daiwa Rental GD</Name>
+        <!-- Please update <Assembly> with absolute path to DaiwaRentalGD.Revit.dll -->
+        <Assembly>DaiwaRentalGD.Revit.dll</Assembly>
+        <AddInId>2342da1d-e4d7-4369-a653-657fbe76e5d4</AddInId>
+        <FullClassName>DaiwaRentalGD.Revit.DaiwaRentalGDExtApp</FullClassName>
+        <Text>Utilities for Daiwa Rental GD</Text>
+        <VendorId>Autodesk Research</VendorId>
+        <VendorDescription>Autodesk Research</VendorDescription>
+    </AddIn>
+</RevitAddIns>

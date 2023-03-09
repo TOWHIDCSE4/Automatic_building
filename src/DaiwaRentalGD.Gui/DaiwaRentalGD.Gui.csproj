@@ -1,0 +1,78 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <Configurations>Debug;Release;Release (No Debugging)</Configurations>
+    <Version>0.5.1</Version>
+    <Authors>Autodesk Research</Authors>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release (No Debugging)|AnyCPU'">
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="VisualizationSVG\SiteDesign\**" />
+    <EmbeddedResource Remove="VisualizationSVG\SiteDesign\**" />
+    <None Remove="VisualizationSVG\SiteDesign\**" />
+    <Page Remove="VisualizationSVG\SiteDesign\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MathNet.Numerics" Version="4.15.0" />
+    <PackageReference Include="Svg" Version="3.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DaiwaRentalGD.Scene\DaiwaRentalGD.Scene.csproj" />
+    <ProjectReference Include="..\DaiwaRentalGD.Geometries\DaiwaRentalGD.Geometries.csproj" />
+    <ProjectReference Include="..\DaiwaRentalGD.Physics\DaiwaRentalGD.Physics.csproj" />
+    <ProjectReference Include="..\DaiwaRentalGD.Model\DaiwaRentalGD.Model.csproj" />
+    <ProjectReference Include="..\DaiwaRentalGD.Optimization\DaiwaRentalGD.Optimization.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="O3.Commons">
+      <HintPath>..\..\libs\O3.Commons.dll</HintPath>
+    </Reference>
+    <Reference Include="O3.Commons.Evolution">
+      <HintPath>..\..\libs\O3.Commons.Evolution.dll</HintPath>
+    </Reference>
+    <Reference Include="O3.Commons.Evolution.UI">
+      <HintPath>..\..\libs\O3.Commons.Evolution.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="O3.Commons.UI">
+      <HintPath>..\..\libs\O3.Commons.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="O3.Foundation">
+      <HintPath>..\..\libs\O3.Foundation.dll</HintPath>
+    </Reference>
+    <Reference Include="O3.Foundation.UI">
+      <HintPath>..\..\libs\O3.Foundation.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="O3.Nsga">
+      <HintPath>..\..\libs\O3.Nsga.dll</HintPath>
+    </Reference>
+    <Reference Include="O3.Nsga.UI">
+      <HintPath>..\..\libs\O3.Nsga.UI.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <PropertyGroup>
+      <DataTargetDir>$(TargetDir)Data</DataTargetDir>
+      <InputTargetDir>$(TargetDir)Input</InputTargetDir>
+    </PropertyGroup>
+    <ItemGroup>
+      <DataFiles Include="$(SolutionDir)data\*.*" />
+      <InputFiles Include="$(SolutionDir)Input\*.*" />
+    </ItemGroup>
+    <Copy SourceFiles="@(DataFiles)" DestinationFolder="$(DataTargetDir)" />
+    <Copy SourceFiles="@(InputFiles)" DestinationFolder="$(InputTargetDir)" />
+    <Message Importance="high" Text="Data files have been copied to $(DataTargetDir)" />
+    <Message Importance="high" Text="Input files have been copied to $(InputTargetDir)" />
+  </Target>
+</Project>

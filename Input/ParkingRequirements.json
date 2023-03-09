@@ -1,0 +1,32 @@
+{
+  "Unit_Requirements_Table": [
+    {
+      "Number_Of_Bedrooms": 0,
+      "Car_Parking_Space_Min": 0.0,
+      "Car_Parking_Space_Max": 0.5,
+      "Bicycle_Parking_Space_Min": 0.5,
+      "Bicycle_Parking_Space_Max": 1.0
+    },
+    {
+      "Number_Of_Bedrooms": 1,
+      "Car_Parking_Space_Min": 0.0,
+      "Car_Parking_Space_Max": 0.5,
+      "Bicycle_Parking_Space_Min": 0.5,
+      "Bicycle_Parking_Space_Max": 1.0
+    },
+    {
+      "Number_Of_Bedrooms": 2,
+      "Car_Parking_Space_Min": 0.5,
+      "Car_Parking_Space_Max": 1.0,
+      "Bicycle_Parking_Space_Min": 1.0,
+      "Bicycle_Parking_Space_Max": 1.5
+    },
+    {
+      "Number_Of_Bedrooms": 3,
+      "Car_Parking_Space_Min": 1.0,
+      "Car_Parking_Space_Max": 2.0,
+      "Bicycle_Parking_Space_Min": 1.0,
+      "Bicycle_Parking_Space_Max": 2.0
+    }
+  ]
+}

@@ -1,0 +1,89 @@
+﻿<UserControl x:Class="DaiwaRentalGD.Gui.Views.Model.Finance.FinanceDataView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="400">
+    <UserControl.Resources>
+        <Thickness x:Key="IndentationThickness">
+            20 0 0 0
+        </Thickness>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <!-- Revenue -->
+        <StackPanel Grid.Row="0" Grid.Column="0">
+            <Label>
+                Revenue (Million Yen per Year)
+            </Label>
+            <StackPanel Margin="{StaticResource IndentationThickness}">
+                <Label>
+                    From Building
+                </Label>
+                <Label>
+                    From Parking Lot
+                </Label>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Row="0" Grid.Column="1">
+            <Label ContentStringFormat="0,,.00"
+                   Content="{Binding TotalRevenueYenPerYear}">
+            </Label>
+            <StackPanel Margin="{StaticResource IndentationThickness}">
+                <Label ContentStringFormat="0,,.00"
+                       Content="{Binding BuildingRevenueYenPerYear}">
+                </Label>
+                <Label ContentStringFormat="0,,.00"
+                       Content="{Binding ParkingLotRevenueYenPerYear}">
+                </Label>
+            </StackPanel>
+        </StackPanel>
+        
+        <!-- Cost -->
+        <StackPanel Grid.Row="1" Grid.Column="0">
+            <Label>
+                Cost (Million Yen)
+            </Label>
+            <StackPanel Margin="{StaticResource IndentationThickness}">
+                <Label>
+                    From Building
+                </Label>
+                <Label>
+                    From Parking Lot
+                </Label>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <Label ContentStringFormat="0,,.00"
+                   Content="{Binding TotalCostYen}">
+            </Label>
+            <StackPanel Margin="{StaticResource IndentationThickness}">
+                <Label ContentStringFormat="0,,.00"
+                       Content="{Binding BuildingCostYen}">
+                </Label>
+                <Label ContentStringFormat="0,,.00"
+                       Content="{Binding ParkingLotCostYen}">
+                </Label>
+            </StackPanel>
+        </StackPanel>
+        
+        <!-- Gross Rate of Returns -->
+        <Label Grid.Row="2" Grid.Column="0">
+            Gross Rate of Return (% per Year)
+        </Label>
+        <Label Grid.Row="2" Grid.Column="1"
+               ContentStringFormat="P2"
+               Content="{Binding GrossRorPerYear}">
+        </Label>
+    </Grid>
+</UserControl>

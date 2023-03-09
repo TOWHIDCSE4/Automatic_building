@@ -1,0 +1,63 @@
+﻿<UserControl x:Class="DaiwaRentalGD.Gui.Views.Model.GDModelSceneDataView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:FinanceViews="clr-namespace:DaiwaRentalGD.Gui.Views.Model.Finance"
+             xmlns:ParkingLotDesignViews="clr-namespace:DaiwaRentalGD.Gui.Views.Model.ParkingLotDesign"
+             xmlns:ZoningViews="clr-namespace:DaiwaRentalGD.Gui.Views.Model.Zoning"
+             mc:Ignorable="d">
+    <GroupBox>
+        <ScrollViewer VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Auto"
+                      Padding="10">
+            <TreeViewItem>
+                <TreeViewItem.Resources>
+                    <Style TargetType="TreeViewItem">
+                        <Setter Property="IsExpanded" Value="True" />
+                    </Style>
+                </TreeViewItem.Resources>
+
+                <TreeViewItem.Header>
+                    <Label>Data</Label>
+                </TreeViewItem.Header>
+
+                <!-- Slant planes -->
+                <TreeViewItem>
+                    <TreeViewItem.Header>
+                        <Label>Slant Planes</Label>
+                    </TreeViewItem.Header>
+                    <ZoningViews:SlantPlanesDataView
+                        DataContext="{Binding SlantPlanesDataViewModel}"/>
+                </TreeViewItem>
+                
+                <!-- Land use -->
+                <TreeViewItem>
+                    <TreeViewItem.Header>
+                        <Label>Land Use</Label>
+                    </TreeViewItem.Header>
+                    <ZoningViews:LandUseDataView
+                        DataContext="{Binding LandUseDataViewModel}"/>
+                </TreeViewItem>
+                
+                <!-- Parking lot -->
+                <TreeViewItem>
+                    <TreeViewItem.Header>
+                        <Label>Parking Lot</Label>
+                    </TreeViewItem.Header>
+                    <ParkingLotDesignViews:ParkingLotDataView
+                        DataContext="{Binding ParkingLotDataViewModel}" />
+                </TreeViewItem>
+                
+                <!-- Finance -->
+                <TreeViewItem>
+                    <TreeViewItem.Header>
+                        <Label>Finance</Label>
+                    </TreeViewItem.Header>
+                    <FinanceViews:FinanceDataView
+                        DataContext="{Binding FinanceDataViewModel}" />
+                </TreeViewItem>
+            </TreeViewItem>
+        </ScrollViewer>
+    </GroupBox>
+</UserControl>

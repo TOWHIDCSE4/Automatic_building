@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Configurations>Debug;Release;Release (No Debugging)</Configurations>
+    <Version>0.5.1</Version>
+    <Authors>Autodesk Research</Authors>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release (No Debugging)|AnyCPU'">
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MathNet.Numerics" Version="4.15.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DaiwaRentalGD.Scene\DaiwaRentalGD.Scene.csproj" />
+    <ProjectReference Include="..\DaiwaRentalGD.Geometries\DaiwaRentalGD.Geometries.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "DaiwaRentalGD.Gui": {
+      "commandName": "Project",
+      "commandLineArgs": "/P3 \"C:\\Users\\towhi\\OneDrive\\Desktop\\VNINPUT\""
+    }
+  }
+}

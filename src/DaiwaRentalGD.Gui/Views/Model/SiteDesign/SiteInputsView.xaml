@@ -1,0 +1,42 @@
+﻿<UserControl x:Class="DaiwaRentalGD.Gui.Views.Model.SiteDesign.SiteInputsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:GuiUtilities="clr-namespace:DaiwaRentalGD.Gui.Utilities"
+             mc:Ignorable="d" d:DesignWidth="400">
+
+    <UserControl.Resources>
+        <GuiUtilities:ViewModelDataTemplateSelector
+            x:Key="ViewModelDataTemplateSelector" />
+    </UserControl.Resources>
+    
+    <StackPanel Orientation="Vertical">
+
+        <Grid>
+
+            <Grid.RowDefinitions>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0">
+                Source
+            </Label>
+            <ComboBox Grid.Row="0" Grid.Column="1"
+                      ItemsSource="{Binding AllSiteDesignerViewModels}"
+                      DisplayMemberPath="SiteDesignerName"
+                      SelectedItem="{Binding SiteDesignerViewModel}" />
+        
+        </Grid>
+
+        <ContentPresenter Margin="0 10 0 0"
+                          Content="{Binding SiteDesignerViewModel}"
+                          ContentTemplateSelector="{StaticResource ViewModelDataTemplateSelector}" />
+    
+    </StackPanel>
+
+</UserControl>

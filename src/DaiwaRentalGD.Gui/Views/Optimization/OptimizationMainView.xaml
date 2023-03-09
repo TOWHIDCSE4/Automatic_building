@@ -1,0 +1,120 @@
+﻿<Window x:Class="DaiwaRentalGD.Gui.Views.Optimization.OptimizationMainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:DaiwaRentalGDGuiViewsOptimization="clr-namespace:DaiwaRentalGD.Gui.Views.Optimization"
+        xmlns:O3CommonsUIViewsPlotting="clr-namespace:O3.Commons.UI.Views.Plotting;assembly=O3.Commons.UI"
+        xmlns:O3FoundationUIViews="clr-namespace:O3.Foundation.UI.Views;assembly=O3.Foundation.UI"
+        xmlns:O3NsgaUIViews="clr-namespace:O3.Nsga.UI.Views;assembly=O3.Nsga.UI"
+        mc:Ignorable="d"
+        Title="Optimization - Daiwa House Rental Housing GD Prototype"
+        MinWidth="600" Width="800"
+        MinHeight="400" Height="600"
+        WindowStartupLocation="CenterOwner"
+        DataContextChanged="Window_DataContextChanged"
+        MouseDown="Window_MouseDown">
+
+    <Grid Margin="10">
+
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <TabControl Grid.Row="0" Grid.Column="0">
+
+            <TabControl.Resources>
+                <Thickness x:Key="TabItemContentMargin">5</Thickness>
+            </TabControl.Resources>
+
+            <!-- Problem -->
+            <TabItem>
+
+                <TabItem.Header>
+                    <Label>
+                        Problem
+                    </Label>
+                </TabItem.Header>
+
+                <DaiwaRentalGDGuiViewsOptimization:GDModelProblemView
+                        Margin="{StaticResource TabItemContentMargin}"
+                        DataContext="{Binding GDModelProblemViewModel}" />
+
+            </TabItem>
+
+            <!-- Solver settings -->
+            <TabItem>
+
+                <TabItem.Header>
+                    <Label>
+                        Solver
+                    </Label>
+                </TabItem.Header>
+
+                <O3NsgaUIViews:Nsga2SolverSettingsView
+                        Margin="{StaticResource TabItemContentMargin}"
+                        DataContext="{Binding GDModelSolverSettingsViewModel}" />
+
+            </TabItem>
+
+            <!-- Solution plot -->
+            <TabItem>
+
+                <TabItem.Header>
+                    <Label>
+                        Solution Plot
+                    </Label>
+                </TabItem.Header>
+
+                <O3CommonsUIViewsPlotting:Plot2DView
+                    Margin="{StaticResource TabItemContentMargin}"
+                    DataContext="{Binding SolutionsPlot2DViewModel}" />
+
+            </TabItem>
+
+            <!-- Solution table -->
+            <TabItem>
+
+                <TabItem.Header>
+                    <Label>
+                        Solutions Table
+                    </Label>
+                </TabItem.Header>
+
+                <O3FoundationUIViews:SolutionCollectionView
+                    Margin="{StaticResource TabItemContentMargin}"
+                    DataContext="{Binding SolutionCollectionViewModel}" />
+
+            </TabItem>
+
+        </TabControl>
+
+        <!-- Container for solver progress and control -->
+        <Grid Grid.Row="1" Grid.Column="0" Margin="0 10 0 0">
+
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <O3NsgaUIViews:Nsga2SolverControlView
+                Grid.Row="0" Grid.Column="0"
+                DataContext="{Binding GDModelSolverControlViewModel}" />
+
+            <O3NsgaUIViews:Nsga2SolverStatusView
+                Grid.Row="1" Grid.Column="0"
+                Margin="0 5 0 0"
+                DataContext="{Binding GDModelSolverStatusViewModel}" />
+
+        </Grid>
+
+    </Grid>
+
+</Window>

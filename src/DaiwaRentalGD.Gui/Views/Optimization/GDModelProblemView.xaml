@@ -1,0 +1,97 @@
+﻿<UserControl x:Class="DaiwaRentalGD.Gui.Views.Optimization.GDModelProblemView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:DaiwaRentalGDGuiUtilities="clr-namespace:DaiwaRentalGD.Gui.Utilities"
+             mc:Ignorable="d"
+             d:DesignHeight="400" d:DesignWidth="600">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+
+            <DaiwaRentalGDGuiUtilities:ViewModelDataTemplateSelector
+                x:Key="ViewModelDataTemplateSelector" />
+
+            <DataTemplate x:Key="InputSpecTreeViewItemTemplate">
+                <Label>
+                    <TextBlock Text="{Binding Name}" />
+                </Label>
+            </DataTemplate>
+
+            <DataTemplate x:Key="OutputSpecTreeViewItemTemplate">
+                <Label>
+                    <TextBlock>
+                        <TextBlock FontStyle="Italic">
+                            (<Run Text="{Binding ObjectiveType}" />)
+                        </TextBlock>
+                        <Run Text="{Binding Name}" />
+                    </TextBlock>
+                </Label>
+            </DataTemplate>
+
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" MinWidth="150" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <TreeView Name="GDModelProblemTreeView">
+
+            <TreeViewItem IsExpanded="True"
+                          ItemsSource="{Binding InputSpecViewModels}"
+                          ItemTemplate="{StaticResource InputSpecTreeViewItemTemplate}">
+
+                <TreeViewItem.Header>
+                    <Label>
+                        Inputs
+                    </Label>
+                </TreeViewItem.Header>
+
+            </TreeViewItem>
+
+            <TreeViewItem IsExpanded="True"
+                          ItemsSource="{Binding OutputSpecViewModels}"
+                          ItemTemplate="{StaticResource OutputSpecTreeViewItemTemplate}">
+
+                <TreeViewItem.Header>
+                    <Label>
+                        Outputs
+                    </Label>
+                </TreeViewItem.Header>
+
+            </TreeViewItem>
+
+        </TreeView>
+
+        <Expander Grid.Row="0" Grid.Column="1"
+                  Margin="5 0 0 0" VerticalAlignment="Top"
+                  IsExpanded="True">
+
+            <Expander.Header>
+                <Label>
+                    <TextBlock Text="{Binding ElementName=GDModelProblemTreeView, Path=SelectedItem.Name}" />
+                </Label>
+            </Expander.Header>
+
+            <ContentControl Margin="{StaticResource ExpanderContentMargin}"
+                            Content="{Binding ElementName=GDModelProblemTreeView, Path=SelectedItem}"
+                            ContentTemplateSelector="{StaticResource ViewModelDataTemplateSelector}" />
+        </Expander>
+
+
+        <GridSplitter Grid.Row="0" Grid.Column="1"
+                      VerticalAlignment="Stretch"
+                      HorizontalAlignment="Left"
+                      Width="3" Background="Transparent" />
+
+    </Grid>
+
+</UserControl>

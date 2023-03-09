@@ -1,0 +1,588 @@
+﻿<UserControl x:Class="DaiwaRentalGD.Gui.Views.Model.BuildingDesign.UnitCatalogInputsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:BuildingDesignViews="clr-namespace:DaiwaRentalGD.Gui.Views.Model.BuildingDesign"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="400">
+
+    <UserControl.Resources>
+
+        <Style TargetType="DataGrid" BasedOn="{StaticResource {x:Type DataGrid}}">
+            <Setter Property="AutoGenerateColumns" Value="False" />
+            <Setter Property="HeadersVisibility" Value="Column" />
+            <Setter Property="SelectionMode" Value="Single" />
+            <Setter Property="SelectionUnit" Value="FullRow" />
+        </Style>
+
+    </UserControl.Resources>
+
+    <DockPanel>
+
+        <!-- Data source -->
+
+        <Expander DockPanel.Dock="Top" IsExpanded="True">
+
+            <Expander.Header>
+                <Label>
+                    Data Source
+                </Label>
+            </Expander.Header>
+
+            <StackPanel Margin="{StaticResource ExpanderContentMargin}" Orientation="Vertical">
+
+                <!-- Data source file path -->
+
+                <Label HorizontalAlignment="Left">
+                    <TextBlock TextWrapping="Wrap" TextTrimming="CharacterEllipsis"
+                               Text="{Binding UnitCatalogJsonFileFullPath, Mode=OneWay}" />
+                </Label>
+
+                <Grid>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="120" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Reload from data source -->
+                    <Button Grid.Row="0" Grid.Column="0"
+                            HorizontalAlignment="Left"
+                            Margin="0 5 0 0" Width="100"
+                            Command="{Binding LoadDataCommand}">
+                        Reload
+                    </Button>
+
+                    <!-- Reload status -->
+                    <Label Grid.Row="0" Grid.Column="1" Margin="0 5 0 0">
+                        <TextBlock Text="{Binding LoadMessage, Mode=OneWay}" />
+                    </Label>
+
+                </Grid>
+
+            </StackPanel>
+
+        </Expander>
+
+        <!-- Unit catalog entries -->
+
+        <Expander IsExpanded="True">
+
+            <Expander.Header>
+                <Label>
+                    Unit Catalog Entries
+                </Label>
+            </Expander.Header>
+
+            <DockPanel Margin="{StaticResource ExpanderContentMargin}">
+
+                <TabControl DockPanel.Dock="Top" MaxHeight="400">
+
+                    <!-- All unit catalog entries -->
+
+                    <TabItem>
+
+                        <TabItem.Header>
+                            <Label>
+                                All
+                            </Label>
+                        </TabItem.Header>
+
+                        <DataGrid ItemsSource="{Binding EntryViewModels}"
+                                  SelectedItem="{Binding SelectedEntryViewModel}">
+
+                            <DataGrid.Columns>
+
+                                <!-- Full name -->
+
+                                <DataGridTemplateColumn Header="Name"
+                                                        MinWidth="30" Width="80"
+                                                        IsReadOnly="True"
+                                                        CanUserSort="True" SortMemberPath="FullName">
+
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBox Style="{StaticResource HiddenTextBoxStyle}" IsReadOnly="True"
+                                                     Text="{Binding FullName, Mode=OneWay}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+
+                                </DataGridTemplateColumn>
+
+                                <!-- Main type -->
+
+                                <DataGridTemplateColumn Header="Main Type"
+                                                        MinWidth="30" Width="80"
+                                                        IsReadOnly="True"
+                                                        CanUserSort="True" SortMemberPath="MainType">
+
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBox Style="{StaticResource HiddenTextBoxStyle}" IsReadOnly="True"
+                                                     Text="{Binding MainType, Mode=OneWay}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+
+                                </DataGridTemplateColumn>
+
+                                <!-- Size (P) -->
+
+                                <DataGridTemplateColumn Header="Size (P)"
+                                                        MinWidth="30" Width="80"
+                                                        IsReadOnly="True"
+                                                        CanUserSort="True" SortMemberPath="SizeInP">
+
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBox Style="{StaticResource HiddenTextBoxStyle}" IsReadOnly="True"
+                                                     Text="{Binding SizeInP, Mode=OneWay}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+
+                                </DataGridTemplateColumn>
+
+                                <!-- Variant type -->
+
+                                <DataGridTemplateColumn Header="Variant Type"
+                                                        MinWidth="30" Width="80"
+                                                        IsReadOnly="True"
+                                                        CanUserSort="True" SortMemberPath="VariantType">
+
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBox Style="{StaticResource HiddenTextBoxStyle}" IsReadOnly="True"
+                                                     Text="{Binding VariantType, Mode=OneWay}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+
+                                </DataGridTemplateColumn>
+
+                                <!-- Plan -->
+
+                                <DataGridTemplateColumn Header="Plan"
+                                                        MinWidth="30" Width="80"
+                                                        IsReadOnly="True"
+                                                        CanUserSort="True" SortMemberPath="PlanName">
+
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBox Style="{StaticResource HiddenTextBoxStyle}" IsReadOnly="True"
+                                                     Text="{Binding PlanName, Mode=OneWay}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+
+                                </DataGridTemplateColumn>
+
+                            </DataGrid.Columns>
+
+                        </DataGrid>
+
+                    </TabItem>
+
+                    <!-- Type A unit catalog entries -->
+
+                    <TabItem>
+
+                        <TabItem.Header>
+                            <Label>
+                                Type A
+                            </Label>
+                        </TabItem.Header>
+
+                        <DataGrid ItemsSource="{Binding TypeAEntryViewModels}"
+                              SelectedItem="{Binding SelectedEntryViewModel}">
+
+                            <DataGrid.Columns>
+
+                                <!-- Full name -->
+
+                                <DataGridTemplateColumn Header="Name"
+                                                        MinWidth="30" Width="80"
+                                                        IsReadOnly="True"
+                                                        CanUserSort="True" SortMemberPath="FullName">
+
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBox Style="{StaticResource HiddenTextBoxStyle}" IsReadOnly="True"
+                                                     Text="{Binding FullName, Mode=OneWay}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+
+                                </DataGridTemplateColumn>
+
+                                <!-- Main type -->
+
+                                <DataGridTemplateColumn Header="Main Type"
+                                                        MinWidth="30" Width="80"
+                                                        IsReadOnly="True"
+                                                        CanUserSort="True" SortMemberPath="MainType">
+
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBox Style="{StaticResource HiddenTextBoxStyle}" IsReadOnly="True"
+                                                     Text="{Binding MainType, Mode=OneWay}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+
+                                </DataGridTemplateColumn>
+
+                                <!-- Size (P) -->
+
+                                <DataGridTemplateColumn Header="Size (P)"
+                                                        MinWidth="30" Width="80"
+                                                        IsReadOnly="True"
+                                                        CanUserSort="True" SortMemberPath="SizeInP">
+
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBox Style="{StaticResource HiddenTextBoxStyle}" IsReadOnly="True"
+                                                     Text="{Binding SizeInP, Mode=OneWay}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+
+                                </DataGridTemplateColumn>
+
+                                <!-- Variant type -->
+
+                                <DataGridTemplateColumn Header="Variant Type"
+                                                        MinWidth="30" Width="80"
+                                                        IsReadOnly="True"
+                                                        CanUserSort="True" SortMemberPath="VariantType">
+
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBox Style="{StaticResource HiddenTextBoxStyle}" IsReadOnly="True"
+                                                     Text="{Binding VariantType, Mode=OneWay}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+
+                                </DataGridTemplateColumn>
+
+                                <!-- Plan -->
+
+                                <DataGridTemplateColumn Header="Plan"
+                                                        MinWidth="30" Width="80"
+                                                        IsReadOnly="True"
+                                                        CanUserSort="True" SortMemberPath="PlanName">
+
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBox Style="{StaticResource HiddenTextBoxStyle}" IsReadOnly="True"
+                                                     Text="{Binding PlanName, Mode=OneWay}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+
+                                </DataGridTemplateColumn>
+
+                                <!-- Position type -->
+
+                                <DataGridTemplateColumn Header="Position"
+                                                        MinWidth="30" Width="80"
+                                                        IsReadOnly="True"
+                                                        CanUserSort="True" SortMemberPath="PositionType">
+
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBox Style="{StaticResource HiddenTextBoxStyle}" IsReadOnly="True"
+                                                     Text="{Binding PositionType, Mode=OneWay}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+
+                                </DataGridTemplateColumn>
+
+                                <!-- Entrance type -->
+
+                                <DataGridTemplateColumn Header="Entrance"
+                                                        MinWidth="30" Width="80"
+                                                        IsReadOnly="True"
+                                                        CanUserSort="True" SortMemberPath="EntranceType">
+
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBox Style="{StaticResource HiddenTextBoxStyle}" IsReadOnly="True"
+                                                     Text="{Binding EntranceType, Mode=OneWay}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+
+                                </DataGridTemplateColumn>
+
+                            </DataGrid.Columns>
+
+                        </DataGrid>
+
+                    </TabItem>
+
+                    <!-- Type B unit catalog entries -->
+
+                    <TabItem>
+
+                        <TabItem.Header>
+                            <Label>
+                                Type B
+                            </Label>
+                        </TabItem.Header>
+
+                        <DataGrid ItemsSource="{Binding TypeBEntryViewModels}"
+                                  SelectedItem="{Binding SelectedEntryViewModel}">
+
+                            <DataGrid.Columns>
+
+                                <!-- Full name -->
+
+                                <DataGridTemplateColumn Header="Name"
+                                                        MinWidth="30" Width="80"
+                                                        IsReadOnly="True"
+                                                        CanUserSort="True" SortMemberPath="FullName">
+
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBox Style="{StaticResource HiddenTextBoxStyle}" IsReadOnly="True"
+                                                     Text="{Binding FullName, Mode=OneWay}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+
+                                </DataGridTemplateColumn>
+
+                                <!-- Main type -->
+
+                                <DataGridTemplateColumn Header="Main Type"
+                                                        MinWidth="30" Width="80"
+                                                        IsReadOnly="True"
+                                                        CanUserSort="True" SortMemberPath="MainType">
+
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBox Style="{StaticResource HiddenTextBoxStyle}" IsReadOnly="True"
+                                                     Text="{Binding MainType, Mode=OneWay}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+
+                                </DataGridTemplateColumn>
+
+                                <!-- Size (P) -->
+
+                                <DataGridTemplateColumn Header="Size (P)"
+                                                        MinWidth="30" Width="80"
+                                                        IsReadOnly="True"
+                                                        CanUserSort="True" SortMemberPath="SizeInP">
+
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBox Style="{StaticResource HiddenTextBoxStyle}" IsReadOnly="True"
+                                                     Text="{Binding SizeInP, Mode=OneWay}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+
+                                </DataGridTemplateColumn>
+
+                                <!-- Variant type -->
+
+                                <DataGridTemplateColumn Header="Variant Type"
+                                                        MinWidth="30" Width="80"
+                                                        IsReadOnly="True"
+                                                        CanUserSort="True" SortMemberPath="VariantType">
+
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBox Style="{StaticResource HiddenTextBoxStyle}" IsReadOnly="True"
+                                                     Text="{Binding VariantType, Mode=OneWay}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+
+                                </DataGridTemplateColumn>
+
+                                <!-- Plan -->
+
+                                <DataGridTemplateColumn Header="Plan"
+                                                        MinWidth="30" Width="80"
+                                                        IsReadOnly="True"
+                                                        CanUserSort="True" SortMemberPath="PlanName">
+
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBox Style="{StaticResource HiddenTextBoxStyle}" IsReadOnly="True"
+                                                     Text="{Binding PlanName, Mode=OneWay}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+
+                                </DataGridTemplateColumn>
+
+                                <!-- Layout type -->
+
+                                <DataGridTemplateColumn Header="Layout"
+                                                        MinWidth="30" Width="80"
+                                                        IsReadOnly="True"
+                                                        CanUserSort="True" SortMemberPath="LayoutType">
+
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBox Style="{StaticResource HiddenTextBoxStyle}" IsReadOnly="True"
+                                                     Text="{Binding LayoutType, Mode=OneWay}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+
+                                </DataGridTemplateColumn>
+
+                            </DataGrid.Columns>
+
+                        </DataGrid>
+
+                    </TabItem>
+
+                    <!-- Type C unit catalog entries -->
+
+                    <TabItem>
+
+                        <TabItem.Header>
+                            <Label>
+                                Type C
+                            </Label>
+                        </TabItem.Header>
+
+                        <DataGrid ItemsSource="{Binding TypeCEntryViewModels}"
+                                  SelectedItem="{Binding SelectedEntryViewModel}">
+
+                            <DataGrid.Columns>
+
+                                <!-- Full name -->
+
+                                <DataGridTemplateColumn Header="Name"
+                                                        MinWidth="30" Width="80"
+                                                        IsReadOnly="True"
+                                                        CanUserSort="True" SortMemberPath="FullName">
+
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBox Style="{StaticResource HiddenTextBoxStyle}" IsReadOnly="True"
+                                                     Text="{Binding FullName, Mode=OneWay}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+
+                                </DataGridTemplateColumn>
+
+                                <!-- Main type -->
+
+                                <DataGridTemplateColumn Header="Main Type"
+                                                        MinWidth="30" Width="80"
+                                                        IsReadOnly="True"
+                                                        CanUserSort="True" SortMemberPath="MainType">
+
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBox Style="{StaticResource HiddenTextBoxStyle}" IsReadOnly="True"
+                                                     Text="{Binding MainType, Mode=OneWay}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+
+                                </DataGridTemplateColumn>
+
+                                <!-- Size (P) -->
+
+                                <DataGridTemplateColumn Header="Size (P)"
+                                                        MinWidth="30" Width="80"
+                                                        IsReadOnly="True"
+                                                        CanUserSort="True" SortMemberPath="SizeInP">
+
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBox Style="{StaticResource HiddenTextBoxStyle}" IsReadOnly="True"
+                                                     Text="{Binding SizeInP, Mode=OneWay}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+
+                                </DataGridTemplateColumn>
+
+                                <!-- Variant type -->
+
+                                <DataGridTemplateColumn Header="Variant Type"
+                                                        MinWidth="30" Width="80"
+                                                        IsReadOnly="True"
+                                                        CanUserSort="True" SortMemberPath="VariantType">
+
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBox Style="{StaticResource HiddenTextBoxStyle}" IsReadOnly="True"
+                                                     Text="{Binding VariantType, Mode=OneWay}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+
+                                </DataGridTemplateColumn>
+
+                                <!-- Plan -->
+
+                                <DataGridTemplateColumn Header="Plan"
+                                                        MinWidth="30" Width="80"
+                                                        IsReadOnly="True"
+                                                        CanUserSort="True" SortMemberPath="PlanName">
+
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBox Style="{StaticResource HiddenTextBoxStyle}" IsReadOnly="True"
+                                                     Text="{Binding PlanName, Mode=OneWay}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+
+                                </DataGridTemplateColumn>
+
+                                <!-- Position type -->
+
+                                <DataGridTemplateColumn Header="Position"
+                                                        MinWidth="30" Width="80"
+                                                        IsReadOnly="True"
+                                                        CanUserSort="True" SortMemberPath="PositionType">
+
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBox Style="{StaticResource HiddenTextBoxStyle}" IsReadOnly="True"
+                                                     Text="{Binding PositionType, Mode=OneWay}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+
+                                </DataGridTemplateColumn>
+
+                                <!-- Entrance type -->
+
+                                <DataGridTemplateColumn Header="Entrance"
+                                                        MinWidth="30" Width="80"
+                                                        IsReadOnly="True"
+                                                        CanUserSort="True" SortMemberPath="EntranceType">
+
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBox Style="{StaticResource HiddenTextBoxStyle}" IsReadOnly="True"
+                                                     Text="{Binding EntranceType, Mode=OneWay}" />
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+
+                                </DataGridTemplateColumn>
+
+                            </DataGrid.Columns>
+
+                        </DataGrid>
+
+                    </TabItem>
+
+                </TabControl>
+
+                <Label DockPanel.Dock="Top" Margin="0 10 0 0">
+                    <TextBlock>
+                        <Run Text="Preview - " />
+                        <Run Text="{Binding SelectedEntryDisplayName, Mode=OneWay}" />
+                    </TextBlock>
+                </Label>
+
+                <BuildingDesignViews:UnitCatalogEntryViewportView
+                    BorderBrush="LightGray" BorderThickness="1"
+                    DataContext="{Binding SelectedEntryViewportViewModel}" />
+
+            </DockPanel>
+
+        </Expander>
+
+    </DockPanel>
+
+</UserControl>

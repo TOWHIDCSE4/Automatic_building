@@ -1,0 +1,255 @@
+﻿<UserControl x:Class="DaiwaRentalGD.Gui.Views.Model.Finance.FinanceInputsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="400">
+
+    <UserControl.Resources>
+
+        <Style TargetType="DataGrid" BasedOn="{StaticResource {x:Type DataGrid}}">
+            <Setter Property="AutoGenerateColumns" Value="False" />
+            <Setter Property="HeadersVisibility" Value="Column" />
+            <Setter Property="SelectionMode" Value="Single" />
+            <Setter Property="SelectionUnit" Value="Cell" />
+        </Style>
+
+    </UserControl.Resources>
+
+    <StackPanel Orientation="Vertical">
+
+        <!-- Data source -->
+
+        <Expander IsExpanded="True">
+
+            <Expander.Header>
+                <Label>
+                    Data Source
+                </Label>
+            </Expander.Header>
+
+            <StackPanel Margin="{StaticResource ExpanderContentMargin}" Orientation="Vertical">
+
+                <!-- Data source file path -->
+
+                <Label HorizontalAlignment="Left">
+                    <TextBlock TextWrapping="Wrap" TextTrimming="CharacterEllipsis"
+                               Text="{Binding FinanceDataJsonFileFullPath, Mode=OneWay}" />
+                </Label>
+
+                <Grid>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="120" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Reload from data source -->
+                    <Button Grid.Row="0" Grid.Column="0"
+                            HorizontalAlignment="Left"
+                            Margin="0 5 0 0" Width="100"
+                            Command="{Binding LoadDataCommand}">
+                        Reload
+                    </Button>
+
+                    <!-- Reload status -->
+                    <Label Grid.Row="0" Grid.Column="1" Margin="0 5 0 0">
+                        <TextBlock Text="{Binding LoadMessage, Mode=OneWay}" />
+                    </Label>
+
+                </Grid>
+
+            </StackPanel>
+
+        </Expander>
+
+        <!-- Unit-related financial data -->
+
+        <Expander IsExpanded="True">
+
+            <Expander.Header>
+                <Label>
+                    Units
+                </Label>
+            </Expander.Header>
+
+            <TabControl Margin="{StaticResource ExpanderContentMargin}"
+                        MaxHeight="400">
+
+                <!-- Unit cost And Revenues entries -->
+
+                <TabItem>
+
+                    <TabItem.Header>
+                        <Label>
+                            Costs And Revenues
+                        </Label>
+                    </TabItem.Header>
+
+                    <!-- Unit revenue entries -->
+
+                    <DataGrid ItemsSource="{Binding UnitCostsAndRevenuesEntries}">
+
+                        <DataGrid.Columns>
+
+                            <!-- Number of bedrooms -->
+
+                            <DataGridTemplateColumn Header="Bedrooms"
+                                                    MinWidth="30" Width="80"
+                                                    IsReadOnly="True"
+                                                    CanUserSort="True" SortMemberPath="NumOfBedrooms">
+
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBox Style="{StaticResource HiddenTextBoxStyle}" IsReadOnly="True"
+                                                 Text="{Binding NumOfBedrooms, Mode=OneWay}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+
+                            </DataGridTemplateColumn>
+                            <!-- Minimum area -->
+
+                            <DataGridTemplateColumn Header="Max Area (&#x33a1;)"
+                                                    MinWidth="30" Width="120"
+                                                    IsReadOnly="True"
+                                                    CanUserSort="True" SortMemberPath="MaxArea">
+
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBox Style="{StaticResource HiddenTextBoxStyle}"
+                                             IsReadOnly="True" Text="{Binding MaxArea, Mode=OneWay, StringFormat=N0}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+
+                            </DataGridTemplateColumn>
+
+                            <!-- Cost in yen -->
+
+                            <DataGridTemplateColumn Header="Cost (&#x00a5;)"
+                                                    MinWidth="30" Width="120"
+                                                    IsReadOnly="True"
+                                                    CanUserSort="True" SortMemberPath="CostYen">
+
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBox Style="{StaticResource HiddenTextBoxStyle}" IsReadOnly="True"
+                                                 Text="{Binding CostYen, Mode=OneWay, StringFormat=N0}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+
+                            </DataGridTemplateColumn>
+
+                       
+                            <!-- Revenue in yen per sqm per month -->
+
+                            <DataGridTemplateColumn Header="Revenue (&#x00a5;/&#x33a1;/month)"
+                                                    MinWidth="30"
+                                                    IsReadOnly="True"
+                                                    CanUserSort="True" SortMemberPath="RevenueYenPerSqmPerMonth">
+
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBox Style="{StaticResource HiddenTextBoxStyle}" IsReadOnly="True"
+                                                 Text="{Binding RevenueYenPerSqmPerMonth, Mode=OneWay, StringFormat=N0}" />
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+
+                            </DataGridTemplateColumn>
+
+                        </DataGrid.Columns>
+
+                    </DataGrid>
+
+                </TabItem>
+
+            </TabControl>
+
+        </Expander>
+
+        <!-- Parking lot-related financial data -->
+
+        <Expander IsExpanded="True">
+
+            <Expander.Header>
+                <Label>
+                    Parking Lot
+                </Label>
+            </Expander.Header>
+
+            <TabControl Margin="{StaticResource ExpanderContentMargin}">
+
+                <!-- Parking lot costs -->
+
+                <TabItem>
+
+                    <TabItem.Header>
+                        <Label>
+                            Costs
+                        </Label>
+                    </TabItem.Header>
+
+                    <Grid>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="120" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Row="0" Grid.Column="0">
+                            From Area (&#x00a5;/&#x33a1;)
+                        </Label>
+
+                        <Label Grid.Row="0" Grid.Column="1">
+                            <TextBlock Text="{Binding ParkingLotCostYenPerSqm, Mode=OneWay, StringFormat=N0}" />
+                        </Label>
+
+                    </Grid>
+
+                </TabItem>
+
+                <TabItem>
+
+                    <!-- Parking lot revenues -->
+
+                    <TabItem.Header>
+                        <Label>
+                            Revenues
+                        </Label>
+                    </TabItem.Header>
+
+                    <Grid>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <Label Grid.Row="0" Grid.Column="0">
+                            From Car Parking (&#x00a5;/space/month)
+                        </Label>
+
+                        <Label Grid.Row="0" Grid.Column="1">
+                            <TextBlock Text="{Binding RevenueYenPerCarParkingSpacePerMonth}" />
+                        </Label>
+
+                    </Grid>
+
+                </TabItem>
+
+            </TabControl>
+
+        </Expander>
+
+    </StackPanel>
+
+</UserControl>

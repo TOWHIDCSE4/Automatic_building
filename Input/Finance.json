@@ -1,0 +1,77 @@
+{
+  "Parking_Lot": {
+    "Cost_Yen_Per_Sqm": 10000.0,
+    "Revenue_Yen_Per_Car_Parking_Space_Per_Month": 10000.0
+  },
+  "Units": {
+    "Costs_And_Revenues": [
+      {
+        "Number_Of_Bedrooms": 0,
+        "Max_Area": 30,
+        "Cost_Yen": 10000000,
+        "Revenue_Yen_Per_Sqm_Per_Month": 2520
+      },
+      {
+        "Number_Of_Bedrooms": 0,
+        "Max_Area": 40,
+        "Cost_Yen": 10000000,
+        "Revenue_Yen_Per_Sqm_Per_Month": 2185
+      },
+      {
+        "Number_Of_Bedrooms": 1,
+        "Max_Area": 40,
+        "Cost_Yen": 11000000,
+        "Revenue_Yen_Per_Sqm_Per_Month": 2425
+      },
+      {
+        "Number_Of_Bedrooms": 1,
+        "Max_Area": 50,
+        "Cost_Yen": 11000000,
+        "Revenue_Yen_Per_Sqm_Per_Month": 2206
+      },
+      {
+        "Number_Of_Bedrooms": 1,
+        "Max_Area": 60,
+        "Cost_Yen": 11000000,
+        "Revenue_Yen_Per_Sqm_Per_Month": 2003
+      },
+      {
+        "Number_Of_Bedrooms": 2,
+        "Max_Area": 50,
+        "Cost_Yen": 12000000,
+        "Revenue_Yen_Per_Sqm_Per_Month": 2360
+      },
+      {
+        "Number_Of_Bedrooms": 2,
+        "Max_Area": 60,
+        "Cost_Yen": 12000000,
+        "Revenue_Yen_Per_Sqm_Per_Month": 2360
+      },
+      {
+        "Number_Of_Bedrooms": 2,
+        "Max_Area": 70,
+        "Cost_Yen": 12000000,
+        "Revenue_Yen_Per_Sqm_Per_Month": 2154
+      },
+      {
+        "Number_Of_Bedrooms": 2,
+        "Max_Area": 80,
+        "Cost_Yen": 12000000,
+        "Revenue_Yen_Per_Sqm_Per_Month": 1811
+      },
+      {
+        "Number_Of_Bedrooms": 3,
+        "Max_Area": 70,
+        "Cost_Yen": 13000000,
+        "Revenue_Yen_Per_Sqm_Per_Month": 2188
+      },
+      {
+        "Number_Of_Bedrooms": 3,
+        "Max_Area": 80,
+        "Cost_Yen": 13000000,
+        "Revenue_Yen_Per_Sqm_Per_Month": 1987
+      }
+    ]
+
+  }
+}

@@ -1,0 +1,71 @@
+﻿<UserControl x:Class="DaiwaRentalGD.Gui.Views.Model.ParkingLotDesign.WalkwayEntranceView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="400">
+    <Expander IsExpanded="True">
+        <Expander.Header>
+            <Label>
+                <TextBlock>
+                    <Run Text="Walkway Entrance" />
+                    <Run Text="{Binding WalkwayEntranceIndex, Mode=OneWay}" />
+                </TextBlock>
+            </Label>
+        </Expander.Header>
+        
+        <Grid Margin="{StaticResource ExpanderContentMargin}">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            
+            <!-- Road edge -->
+            <Label Grid.Row="0" Grid.Column="0">
+                Road Edge
+            </Label>
+            <StackPanel Grid.Row="0" Grid.Column="1">
+                <Slider x:Name="RoadEdgeIndexIndexSlider"
+                        Minimum="0" Maximum="{Binding MaxRoadsideIndex}"
+                        Value="{Binding RoadEdgeIndexIndex}"
+                        IsSnapToTickEnabled="True" />
+                <Grid>
+                    <Label HorizontalAlignment="Left" Style="{StaticResource SliderTickLabelStyle}">
+                        <TextBlock Text="{Binding ElementName=RoadEdgeIndexIndexSlider, Path=Minimum}" />
+                    </Label>
+                    <Label HorizontalAlignment="Right" Style="{StaticResource SliderTickLabelStyle}">
+                        <TextBlock Text="{Binding ElementName=RoadEdgeIndexIndexSlider, Path=Maximum}" />
+                    </Label>
+                    <Label HorizontalAlignment="Center" Style="{StaticResource SliderTickLabelStyle}">
+                        <TextBlock Text="{Binding ElementName=RoadEdgeIndexIndexSlider, Path=Value}" />
+                    </Label>
+                </Grid>
+            </StackPanel>
+            
+            <!-- Location on road edge -->
+            <Label Grid.Row="1" Grid.Column="0">
+                Location
+            </Label>
+            <StackPanel Grid.Row="1" Grid.Column="1">
+                <Slider x:Name="RoadEdgeSafeParamSlider"
+                        Minimum="0.0" Maximum="1.0"
+                        Value="{Binding RoadEdgeSafeParam}" />
+                <Grid>
+                    <Label HorizontalAlignment="Left" Style="{StaticResource SliderTickLabelStyle}">
+                        <TextBlock Text="{Binding ElementName=RoadEdgeSafeParamSlider, Path=Minimum, StringFormat=N3}" />
+                    </Label>
+                    <Label HorizontalAlignment="Right" Style="{StaticResource SliderTickLabelStyle}">
+                        <TextBlock Text="{Binding ElementName=RoadEdgeSafeParamSlider, Path=Maximum, StringFormat=N3}" />
+                    </Label>
+                    <Label HorizontalAlignment="Center" Style="{StaticResource SliderTickLabelStyle}">
+                        <TextBlock Text="{Binding ElementName=RoadEdgeSafeParamSlider, Path=Value, StringFormat=N3}" />
+                    </Label>
+                </Grid>
+            </StackPanel>
+        </Grid>
+    </Expander>
+</UserControl>

@@ -1,0 +1,157 @@
+﻿<UserControl x:Class="DaiwaRentalGD.Gui.Views.Model.ParkingLotDesign.ParkingLotDataView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"  d:DesignWidth="400">
+    <UserControl.Resources>
+        <Thickness x:Key="IndentationThicness"></Thickness>
+    </UserControl.Resources>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition  Width="200"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <!-- Car parking spaces fulfillment -->
+        <Label Grid.Row="0" Grid.Column="0">
+            Car Parking Spaces Fulfillment
+        </Label>
+        <Label Grid.Row="0" Grid.Column="1"
+               ContentStringFormat="P2"
+               Content="{Binding Path=CarParkingSpaceFulfillment}">
+        </Label>
+
+        <!-- Car parking spaces -->
+        <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                      Margin="20 0 0 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="180" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <!-- Number of car parking spaces -->
+            <Label Grid.Row="0" Grid.Column="0">
+                # of Car Parking Spaces
+            </Label>
+            <Label Grid.Row="0" Grid.Column="1"
+                   Content="{Binding Path=NumOfCarParkingSpaces}">
+            </Label>
+            
+            <!-- Minimum number of car parking spaces -->
+            <Label Grid.Row="1" Grid.Column="0">
+                Min # of Car Parking Spaces
+            </Label>
+            <Label Grid.Row="1" Grid.Column="1"
+                   ContentStringFormat="0.00"
+                   Content="{Binding Path=MinNumOfCarParkingSpaces}">
+            </Label>
+            
+            <!-- Maximum number of car parking spaces -->
+            <Label Grid.Row="2" Grid.Column="0">
+                Max # of Car Parking Spaces
+            </Label>
+            <Label Grid.Row="2" Grid.Column="1"
+                   ContentStringFormat="0.00"
+                   Content="{Binding Path=MaxNumOfCarParkingSpaces}">
+            </Label>
+        </Grid>
+
+        <!-- Driveway -->
+        <Label Grid.Row="2" Grid.Column="0">Driveway</Label>
+        <Grid Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2"
+              Margin="20 0 0 0">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="180" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <!-- Driveway area total -->
+            <Label Grid.Row="0" Grid.Column="0">
+                Driveway Area Total (&#13217;)
+            </Label>
+            <Label Grid.Row="0" Grid.Column="1"
+                   ContentStringFormat="0.00"
+                   Content="{Binding Path=DrivewayAreaTotal}">
+            </Label>
+
+            <!-- Driveway area per car parking space -->
+            <Label Grid.Row="1" Grid.Column="0">
+                <TextBlock>Driveway Area Per Car Parking Space (&#13217;)</TextBlock>
+            </Label>
+            <Label Grid.Row="1" Grid.Column="1"
+                   ContentStringFormat="0.00"
+                   Content="{Binding Path=DrivewayAreaPerCarParkingSpace}">
+            </Label>
+        </Grid>
+
+        <!-- Bicycle parking spaces fulfillment -->
+        <Label Grid.Row="4" Grid.Column="0">
+            Bicycle Parking Spaces Fulfillment
+        </Label>
+        <Label Grid.Row="4" Grid.Column="1"
+               ContentStringFormat="P2"
+               Content="{Binding Path=BicycleParkingSpaceFulfillment}">
+        </Label>
+
+        <!-- Bicycle parking spaces -->
+        <Grid Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2"
+                      Margin="20 0 0 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="180" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            
+            <!-- Number of bicycle parking spaces -->
+            <Label Grid.Row="0" Grid.Column="0">
+                # of Bicycle Parking Spaces
+            </Label>
+            <Label Grid.Row="0" Grid.Column="1"
+                   Content="{Binding Path=NumOfBicycleParkingSpaces}">
+            </Label>
+            
+            <!-- Minimum number of bicycle parking spaces -->
+            <Label Grid.Row="1" Grid.Column="0">
+                Min # of Bicycle Parking Spaces
+            </Label>
+            <Label Grid.Row="1" Grid.Column="1"
+                   ContentStringFormat="0.00"
+                   Content="{Binding Path=MinNumOfBicycleParkingSpaces}">
+            </Label>
+            
+            <!-- Maximum number of bicycle parking spaces -->
+            <Label Grid.Row="2" Grid.Column="0">
+                <TextBlock>
+                    Max # of Bicycle Parking Spaces (Target)
+                </TextBlock>
+            </Label>
+            <Label Grid.Row="2" Grid.Column="1"
+                   ContentStringFormat="0.00"
+                   Content="{Binding Path=MaxNumOfBicycleParkingSpaces}">
+            </Label>
+        </Grid>
+    </Grid>
+</UserControl>

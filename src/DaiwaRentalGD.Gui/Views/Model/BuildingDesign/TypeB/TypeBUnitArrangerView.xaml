@@ -1,0 +1,30 @@
+﻿<UserControl x:Class="DaiwaRentalGD.Gui.Views.Model.BuildingDesign.TypeB.TypeBUnitArrangerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:BuildingDesignViews="clr-namespace:DaiwaRentalGD.Gui.Views.Model.BuildingDesign"
+             mc:Ignorable="d" d:DesignWidth="400">
+    <UserControl.Resources>
+        <Thickness x:Key="RowMargin">0 10 0 0</Thickness>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="120" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Grid.Column="0">
+            Roof Type
+        </Label>
+        <ComboBox Grid.Row="0" Grid.Column="1"
+                  ItemsSource="{Binding AllRoofTypes}"
+                  SelectedItem="{Binding RoofType}" />
+        <BuildingDesignViews:UnitArrangerView
+            Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"   Margin="{StaticResource RowMargin}"/>
+    </Grid>
+</UserControl>

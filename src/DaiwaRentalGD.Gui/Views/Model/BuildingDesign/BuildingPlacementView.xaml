@@ -1,0 +1,173 @@
+﻿<UserControl x:Class="DaiwaRentalGD.Gui.Views.Model.BuildingDesign.BuildingPlacementInputsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="400">
+    <UserControl.Resources>
+        <Thickness x:Key="RowMargin">
+            0 10 0 0
+        </Thickness>
+    </UserControl.Resources>
+
+    <StackPanel Orientation="Vertical">
+        <!-- Building location -->
+        <Expander IsExpanded="True">
+            <Expander.Header>
+                <Label>
+                    <TextBlock>Location</TextBlock>
+                </Label>
+            </Expander.Header>
+
+            <Grid Margin="{StaticResource ExpanderContentMargin}">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <!-- Location X -->
+                <Label Grid.Row="0" Grid.Column="0">
+                    <TextBlock>
+                        X (in Map Space)
+                    </TextBlock>
+                </Label>
+                <StackPanel Grid.Row="0" Grid.Column="1"
+                            Orientation="Vertical">
+                    <Slider Minimum="{Binding BuildingMinX, Mode=OneWay}"
+                            Maximum="{Binding BuildingMaxX, Mode=OneWay}"
+                            Value="{Binding BuildingX}">
+                    </Slider>
+                    <Grid>
+                        <Label HorizontalAlignment="Left" Style="{StaticResource SliderTickLabelStyle}">
+                            <TextBlock>
+                                <Run Text="{Binding BuildingMinX, Mode=OneWay, StringFormat=N2}" /><Run Text="m" />
+                            </TextBlock>
+                        </Label>
+                        <Label HorizontalAlignment="Right" Style="{StaticResource SliderTickLabelStyle}">
+                            <TextBlock>
+                                <Run Text="{Binding BuildingMaxX, Mode=OneWay, StringFormat=N2}" /><Run Text="m" />
+                            </TextBlock>
+                        </Label>
+                        <Label HorizontalAlignment="Center" Style="{StaticResource SliderTickLabelStyle}">
+                            <TextBlock>
+                                <Run Text="{Binding BuildingX, Mode=OneWay, StringFormat=N2}" /><Run Text="m" />
+                            </TextBlock>
+                        </Label>
+                    </Grid>
+                </StackPanel>
+
+                <!-- Location Y -->
+                <Label Grid.Row="1" Grid.Column="0"
+                       Margin="{StaticResource RowMargin}">
+                    <TextBlock>
+                        Y (in Map Space)
+                    </TextBlock>
+                </Label>
+                <StackPanel Grid.Row="1" Grid.Column="1"
+                            Margin="{StaticResource RowMargin}"
+                            Orientation="Vertical">
+                    <Slider Minimum="{Binding BuildingMinY, Mode=OneWay}"
+                            Maximum="{Binding BuildingMaxY, Mode=OneWay}"
+                            Value="{Binding BuildingY}">
+                    </Slider>
+                    <Grid>
+                        <Label HorizontalAlignment="Left" Style="{StaticResource SliderTickLabelStyle}">
+                            <TextBlock>
+                                <Run Text="{Binding BuildingMinY, Mode=OneWay, StringFormat=N2}" /><Run Text="m" />
+                            </TextBlock>
+                        </Label>
+                        <Label HorizontalAlignment="Right" Style="{StaticResource SliderTickLabelStyle}">
+                            <TextBlock>
+                                <Run Text="{Binding BuildingMaxY, Mode=OneWay, StringFormat=N2}" /><Run Text="m" />
+                            </TextBlock>
+                        </Label>
+                        <Label HorizontalAlignment="Center" Style="{StaticResource SliderTickLabelStyle}">
+                            <TextBlock>
+                                <Run Text="{Binding BuildingY, Mode=OneWay, StringFormat=N2}" /><Run Text="m" />
+                            </TextBlock>
+                        </Label>
+                    </Grid>
+                </StackPanel>
+            </Grid>
+        </Expander>
+
+        <!-- Building orientation -->
+        <Expander IsExpanded="True">
+            <Expander.Header>
+                <Label>
+                    Orientation
+                </Label>
+            </Expander.Header>
+
+            <Grid Margin="{StaticResource ExpanderContentMargin}">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <!-- Orienttaion mode -->
+                <Label Grid.Row="0" Grid.Column="0">
+                    Mode
+                </Label>
+                <ComboBox Grid.Row="0" Grid.Column="1"
+                          ItemsSource="{Binding AllBuildingOrientationModes}"
+                          SelectedValue="{Binding BuildingOrientationMode}" />
+
+                <!-- Input true north angle -->
+                <Label Grid.Row="1" Grid.Column="0"
+                       Margin="{StaticResource RowMargin}">
+                    <TextBlock>
+                        Angle (from True North)
+                    </TextBlock>
+                </Label>
+                <StackPanel Grid.Row="1" Grid.Column="1"
+                            Margin="{StaticResource RowMargin}">
+                    <Slider Minimum="{Binding Path=BuildingMinTNAngleDegrees, Mode=OneWay}"
+                            Maximum="{Binding Path=BuildingMaxTNAngleDegrees, Mode=OneWay}"
+                            Value="{Binding Path=BuildingTNAngleDegrees}">
+                    </Slider>
+                    <Grid Margin="0 0 0 10">
+                        <Label HorizontalAlignment="Left" Style="{StaticResource SliderTickLabelStyle}">
+                            <TextBlock>
+                                <Run Text="{Binding BuildingMinTNAngleDegrees, Mode=OneWay, StringFormat=N2}" /><Run Text="&#176;" />
+                            </TextBlock>
+                        </Label>
+                        <Label HorizontalAlignment="Right" Style="{StaticResource SliderTickLabelStyle}">
+                            <TextBlock>
+                                <Run Text="{Binding BuildingMaxTNAngleDegrees, Mode=OneWay, StringFormat=N2}" /><Run Text="&#176;" />
+                            </TextBlock>
+                        </Label>
+                        <Label HorizontalAlignment="Center" Style="{StaticResource SliderTickLabelStyle}">
+                            <TextBlock>
+                                <Run Text="{Binding BuildingTNAngleDegrees, Mode=OneWay, StringFormat=N2}" /><Run Text="&#176;" />
+                            </TextBlock>
+                        </Label>
+                    </Grid>
+                </StackPanel>
+
+                <!-- Actual true north angle -->
+                <Label Grid.Row="2" Grid.Column="0"
+                       Margin="{StaticResource RowMargin}">
+                    <TextBlock>
+                        Actual Angle (from True North)
+                    </TextBlock>
+                </Label>
+                <Label Grid.Row="2" Grid.Column="1"
+                       Margin="{StaticResource RowMargin}">
+                    <TextBlock><Run Text="{Binding BuildingActualTNAngleDegrees, Mode=OneWay, StringFormat=N2}" />
+                        <Run Text="&#176;" />
+                    </TextBlock>
+                </Label>
+            </Grid>
+        </Expander>
+    </StackPanel>
+</UserControl>

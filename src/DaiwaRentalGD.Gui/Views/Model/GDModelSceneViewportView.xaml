@@ -1,0 +1,15 @@
+﻿<UserControl x:Class="DaiwaRentalGD.Gui.Views.Model.GDModelSceneViewportView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" DataContextChanged="UserControl_DataContextChanged">
+    <Grid Background="White"
+        MouseDown="ModelSceneViewport3D_MouseDown"
+        MouseMove="ModelSceneViewport3D_MouseMove"
+        MouseUp="ModelSceneViewport3D_MouseUp"
+        MouseWheel="ModelSceneViewport3D_MouseWheel">
+        <Viewport3D Name="ModelSceneViewport3D">
+        </Viewport3D>
+    </Grid>
+</UserControl>

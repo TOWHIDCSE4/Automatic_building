@@ -1,0 +1,428 @@
+﻿<UserControl x:Class="DaiwaRentalGD.Gui.Views.Model.ParkingLotDesign.ParkingLotRequirementsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="400">
+
+    <UserControl.Resources>
+
+        <Style TargetType="DataGrid" BasedOn="{StaticResource {x:Type DataGrid}}">
+            <Setter Property="AutoGenerateColumns" Value="False" />
+            <Setter Property="HeadersVisibility" Value="Column" />
+            <Setter Property="SelectionMode" Value="Single" />
+            <Setter Property="SelectionUnit" Value="Cell" />
+        </Style>
+
+    </UserControl.Resources>
+
+    <StackPanel>
+
+        <!-- Data source -->
+
+        <Expander IsExpanded="True">
+
+            <Expander.Header>
+                <Label>
+                    Data Source
+                </Label>
+            </Expander.Header>
+
+            <StackPanel Margin="{StaticResource ExpanderContentMargin}" Orientation="Vertical">
+
+                <!-- Data source file path -->
+
+                <Label HorizontalAlignment="Left">
+                    <TextBlock TextWrapping="Wrap" TextTrimming="CharacterEllipsis"
+                               Text="{Binding ParkingRequirementsJsonFileFullPath, Mode=OneWay}" />
+                </Label>
+
+                <Grid>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="120" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Reload from data source -->
+
+                    <Button Grid.Row="0" Grid.Column="0"
+                            HorizontalAlignment="Left"
+                            Margin="0 5 0 0" Width="100"
+                            Command="{Binding LoadDataCommand}">
+                        Reload
+                    </Button>
+
+                    <!-- Reload status -->
+
+                    <Label Grid.Row="0" Grid.Column="1" Margin="0 5 0 0">
+                        <TextBlock Text="{Binding LoadMessage, Mode=OneWay}" />
+                    </Label>
+
+                </Grid>
+
+            </StackPanel>
+
+        </Expander>
+
+        <!-- Parking requirements totals -->
+
+        <Expander IsExpanded="True">
+
+            <Expander.Header>
+                <Label>
+                    Totals
+                </Label>
+            </Expander.Header>
+
+            <Grid Margin="{StaticResource ExpanderContentMargin}">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <!-- #region Car parking requirements totals -->
+
+                <Label Grid.Row="0" Grid.Column="0" Margin="0 0 20 0">
+                    Car Parking Spaces
+                </Label>
+
+                <Label Grid.Row="0" Grid.Column="1">
+                    Min
+                </Label>
+
+                <Label Grid.Row="0" Grid.Column="2">
+                    <TextBlock Text="{Binding CarParkingSpaceMinTotal}" />
+                </Label>
+
+                <Label Grid.Row="0" Grid.Column="3">
+                    Max
+                </Label>
+
+                <Label Grid.Row="0" Grid.Column="4">
+                    <TextBlock Text="{Binding CarParkingSpaceMaxTotal}" />
+                </Label>
+
+                <!-- #endregion -->
+
+                <!-- #region Bicycle parking requirements totals -->
+
+                <Label Grid.Row="1" Grid.Column="0" Margin="0 0 20 0">
+                    Bicycle Parking Spaces
+                </Label>
+
+                <Label Grid.Row="1" Grid.Column="1">
+                    Min
+                </Label>
+
+                <Label Grid.Row="1" Grid.Column="2">
+                    <TextBlock Text="{Binding BicycleParkingSpaceMinTotal}" />
+                </Label>
+
+                <Label Grid.Row="1" Grid.Column="3">
+                    Max
+                </Label>
+
+                <Label Grid.Row="1" Grid.Column="4">
+                    <TextBlock Text="{Binding BicycleParkingSpaceMaxTotal}" />
+                </Label>
+
+                <!-- #endregion -->
+
+            </Grid>
+
+        </Expander>
+
+        <!-- Unit parking requirements -->
+
+        <Expander IsExpanded="True">
+
+            <Expander.Header>
+                <Label>
+                    Unit Parking Requirements
+                </Label>
+            </Expander.Header>
+
+            <Grid Margin="{StaticResource ExpanderContentMargin}">
+
+                <DataGrid ItemsSource="{Binding UnitRequirementsList}">
+
+                    <DataGrid.Columns>
+
+                        <!-- Number of bedrooms -->
+
+                        <DataGridTemplateColumn Header="Bedrooms"
+                                                MinWidth="30" Width="80"
+                                                IsReadOnly="True"
+                                                CanUserSort="True" SortMemberPath="NumOfBedrooms">
+
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox Style="{StaticResource HiddenTextBoxStyle}" IsReadOnly="True"
+                                             Text="{Binding NumOfBedrooms, Mode=OneWay}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+
+                        </DataGridTemplateColumn>
+
+                        <!-- Minimum car parking requirements for the unit -->
+
+                        <DataGridTemplateColumn Header="Car Min"
+                                                MinWidth="30"
+                                                IsReadOnly="True"
+                                                CanUserSort="True" SortMemberPath="CarParkingSpaceMin">
+
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox Style="{StaticResource HiddenTextBoxStyle}" IsReadOnly="True"
+                                             Text="{Binding CarParkingSpaceMin, Mode=OneWay}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+
+                        </DataGridTemplateColumn>
+
+                        <!-- Maximum car parking requirements for the unit -->
+
+                        <DataGridTemplateColumn Header="Car Max"
+                                                MinWidth="30"
+                                                IsReadOnly="True"
+                                                CanUserSort="True" SortMemberPath="CarParkingSpaceMax">
+
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox Style="{StaticResource HiddenTextBoxStyle}" IsReadOnly="True"
+                                             Text="{Binding CarParkingSpaceMax, Mode=OneWay}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+
+                        </DataGridTemplateColumn>
+
+                        <!-- Minimum bicycle parking requirements for the unit -->
+
+                        <DataGridTemplateColumn Header="Bicycle Min"
+                                                MinWidth="30"
+                                                IsReadOnly="True"
+                                                CanUserSort="True" SortMemberPath="BicycleParkingSpaceMin">
+
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox Style="{StaticResource HiddenTextBoxStyle}" IsReadOnly="True"
+                                             Text="{Binding BicycleParkingSpaceMin, Mode=OneWay}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+
+                        </DataGridTemplateColumn>
+
+                        <!-- Maximum bicycle parking requirements for the unit -->
+
+                        <DataGridTemplateColumn Header="Bicycle Max"
+                                                MinWidth="30"
+                                                IsReadOnly="True"
+                                                CanUserSort="True" SortMemberPath="BicycleParkingSpaceMax">
+
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox Style="{StaticResource HiddenTextBoxStyle}" IsReadOnly="True"
+                                             Text="{Binding BicycleParkingSpaceMax, Mode=OneWay}" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+
+                        </DataGridTemplateColumn>
+
+                    </DataGrid.Columns>
+
+                </DataGrid>
+
+            </Grid>
+
+        </Expander>
+
+        <!-- Parking requirements override -->
+
+        <Expander IsExpanded="True">
+
+            <Expander.Header>
+                <Label>
+                    Overrides
+                </Label>
+            </Expander.Header>
+
+            <StackPanel Margin="{StaticResource ExpanderContentMargin}">
+
+                <Label>
+                    Car Parking Spaces
+                </Label>
+
+                <Grid>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="120" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Minimum car parking requirements specified manually -->
+
+                    <CheckBox Grid.Row="0" Grid.Column="0"
+                              IsChecked="{Binding UseOverrideCarParkingSpaceMinTotal}">
+                        <Label>
+                            Override Min?
+                        </Label>
+                    </CheckBox>
+
+                    <StackPanel Grid.Row="0" Grid.Column="1"
+                                IsEnabled="{Binding UseOverrideCarParkingSpaceMinTotal}">
+
+                        <Slider Name="OverrideCarParkingSpaceMinTotalSlider"
+                                Minimum="0" Maximum="30"
+                                Value="{Binding OverrideCarParkingSpaceMinTotal}"
+                                IsSnapToTickEnabled="True" />
+
+                        <Grid>
+                            <Label HorizontalAlignment="Left" Style="{StaticResource SliderTickLabelStyle}">
+                                <TextBlock Text="{Binding ElementName=OverrideCarParkingSpaceMinTotalSlider, Path=Minimum}" />
+                            </Label>
+                            <Label HorizontalAlignment="Right" Style="{StaticResource SliderTickLabelStyle}">
+                                <TextBlock Text="{Binding ElementName=OverrideCarParkingSpaceMinTotalSlider, Path=Maximum}" />
+                            </Label>
+                            <Label HorizontalAlignment="Center" Style="{StaticResource SliderTickLabelStyle}">
+                                <TextBlock Text="{Binding ElementName=OverrideCarParkingSpaceMinTotalSlider, Path=Value}" />
+                            </Label>
+                        </Grid>
+
+                    </StackPanel>
+
+                    <!-- Maximum car parking requirements specified manually -->
+
+                    <CheckBox Grid.Row="1" Grid.Column="0"
+                              IsChecked="{Binding UseOverrideCarParkingSpaceMaxTotal}">
+                        <Label>
+                            Override Max?
+                        </Label>
+                    </CheckBox>
+
+                    <StackPanel Grid.Row="1" Grid.Column="1"
+                                IsEnabled="{Binding UseOverrideCarParkingSpaceMaxTotal}">
+
+                        <Slider Name="OverrideCarParkingSpaceMaxTotalSlider"
+                                Minimum="0" Maximum="30"
+                                Value="{Binding OverrideCarParkingSpaceMaxTotal}"
+                                IsSnapToTickEnabled="True" />
+
+                        <Grid>
+                            <Label HorizontalAlignment="Left" Style="{StaticResource SliderTickLabelStyle}">
+                                <TextBlock Text="{Binding ElementName=OverrideCarParkingSpaceMaxTotalSlider, Path=Minimum}" />
+                            </Label>
+                            <Label HorizontalAlignment="Right" Style="{StaticResource SliderTickLabelStyle}">
+                                <TextBlock Text="{Binding ElementName=OverrideCarParkingSpaceMaxTotalSlider, Path=Maximum}" />
+                            </Label>
+                            <Label HorizontalAlignment="Center" Style="{StaticResource SliderTickLabelStyle}">
+                                <TextBlock Text="{Binding ElementName=OverrideCarParkingSpaceMaxTotalSlider, Path=Value}" />
+                            </Label>
+                        </Grid>
+
+                    </StackPanel>
+
+                </Grid>
+
+                <Label>
+                    Bicycle Parking Spaces
+                </Label>
+
+                <Grid>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="120" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Minimum bicycle parking requirements specified manually -->
+
+                    <CheckBox Grid.Row="0" Grid.Column="0"
+                              IsChecked="{Binding UseOverrideBicycleParkingSpaceMinTotal}">
+                        <Label>
+                            Override Min?
+                        </Label>
+                    </CheckBox>
+
+                    <StackPanel Grid.Row="0" Grid.Column="1"
+                                IsEnabled="{Binding UseOverrideBicycleParkingSpaceMinTotal}">
+
+                        <Slider Name="OverrideBicycleParkingSpaceMinTotalSlider"
+                                Minimum="0" Maximum="30"
+                                Value="{Binding OverrideBicycleParkingSpaceMinTotal}"
+                                IsSnapToTickEnabled="True" />
+
+                        <Grid>
+                            <Label HorizontalAlignment="Left" Style="{StaticResource SliderTickLabelStyle}">
+                                <TextBlock Text="{Binding ElementName=OverrideBicycleParkingSpaceMinTotalSlider, Path=Minimum}" />
+                            </Label>
+                            <Label HorizontalAlignment="Right" Style="{StaticResource SliderTickLabelStyle}">
+                                <TextBlock Text="{Binding ElementName=OverrideBicycleParkingSpaceMinTotalSlider, Path=Maximum}" />
+                            </Label>
+                            <Label HorizontalAlignment="Center" Style="{StaticResource SliderTickLabelStyle}">
+                                <TextBlock Text="{Binding ElementName=OverrideBicycleParkingSpaceMinTotalSlider, Path=Value}" />
+                            </Label>
+                        </Grid>
+
+                    </StackPanel>
+
+                    <!-- Maximum bicycle parking requirements specified manually -->
+
+                    <CheckBox Grid.Row="1" Grid.Column="0"
+                              IsChecked="{Binding UseOverrideBicycleParkingSpaceMaxTotal}">
+                        <Label>
+                            Override Max?
+                        </Label>
+                    </CheckBox>
+
+                    <StackPanel Grid.Row="1" Grid.Column="1"
+                                IsEnabled="{Binding UseOverrideBicycleParkingSpaceMaxTotal}">
+
+                        <Slider Name="OverrideBicycleParkingSpaceMaxTotalSlider"
+                                Minimum="0" Maximum="30"
+                                Value="{Binding OverrideBicycleParkingSpaceMaxTotal}"
+                                IsSnapToTickEnabled="True" />
+
+                        <Grid>
+                            <Label HorizontalAlignment="Left" Style="{StaticResource SliderTickLabelStyle}">
+                                <TextBlock Text="{Binding ElementName=OverrideBicycleParkingSpaceMaxTotalSlider, Path=Minimum}" />
+                            </Label>
+                            <Label HorizontalAlignment="Right" Style="{StaticResource SliderTickLabelStyle}">
+                                <TextBlock Text="{Binding ElementName=OverrideBicycleParkingSpaceMaxTotalSlider, Path=Maximum}" />
+                            </Label>
+                            <Label HorizontalAlignment="Center" Style="{StaticResource SliderTickLabelStyle}">
+                                <TextBlock Text="{Binding ElementName=OverrideBicycleParkingSpaceMaxTotalSlider, Path=Value}" />
+                            </Label>
+                        </Grid>
+
+                    </StackPanel>
+
+                </Grid>
+
+            </StackPanel>
+
+        </Expander>
+
+    </StackPanel>
+
+</UserControl>

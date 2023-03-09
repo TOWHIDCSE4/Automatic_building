@@ -1,0 +1,58 @@
+﻿<UserControl x:Class="DaiwaRentalGD.Gui.Views.Model.ParkingLotDesign.RoadsideCarParkingAreaDesignerView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ParkingLotDesignViews="clr-namespace:DaiwaRentalGD.Gui.Views.Model.ParkingLotDesign"
+             mc:Ignorable="d" d:DesignWidth="400">
+    <StackPanel>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <!-- The roadside from which to place car parking areas first -->
+            <Label Grid.Row="0" Grid.Column="0">
+                Start Roadside
+            </Label>
+            <StackPanel Grid.Row="0" Grid.Column="1">
+                <Slider Name="StartRoadsideIndexSlider"
+                        Minimum="0" Maximum="{Binding MaxRoadsideIndex}"
+                        Value="{Binding RoadsideStartIndex}"
+                        IsSnapToTickEnabled="True" />
+                <Grid>
+                    <Label HorizontalAlignment="Left" Style="{StaticResource SliderTickLabelStyle}">
+                        <TextBlock Text="{Binding ElementName=StartRoadsideIndexSlider, Path=Minimum}" />
+                    </Label>
+                    <Label HorizontalAlignment="Right" Style="{StaticResource SliderTickLabelStyle}">
+                        <TextBlock Text="{Binding ElementName=StartRoadsideIndexSlider, Path=Maximum}" />
+                    </Label>
+                    <Label HorizontalAlignment="Center" Style="{StaticResource SliderTickLabelStyle}">
+                        <TextBlock Text="{Binding ElementName=StartRoadsideIndexSlider, Path=Value}" />
+                    </Label>
+                </Grid>
+            </StackPanel>
+        </Grid>
+
+        <!-- Roadside parameters for placing car parking areas -->
+        <Expander Margin="0 10 0 0" IsExpanded="True">
+            <Expander.Header>
+                <Label>
+                    Roadside Parameters
+                </Label>
+            </Expander.Header>
+            <ItemsControl Margin="{StaticResource ExpanderContentMargin}"
+                          ItemsSource="{Binding RoadsideCarParkingAreaParamsViewModels}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <ParkingLotDesignViews:RoadsideCarParkingAreaParamsView />
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </Expander>
+    </StackPanel>
+</UserControl>

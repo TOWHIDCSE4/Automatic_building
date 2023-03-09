@@ -1,0 +1,58 @@
+﻿<UserControl x:Class="DaiwaRentalGD.Gui.Views.Model.ParkingLotDesign.RoadsideCarParkingAreaParamsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="400">
+    <Expander IsExpanded="True">
+        <Expander.Header>
+            <Label>
+                <TextBlock>
+                    <Run Text="Roadside" />
+                    <Run Text="{Binding RoadsideIndex, Mode=OneWay}" />
+                </TextBlock>
+            </Label>
+        </Expander.Header>
+
+        <Grid Margin="{StaticResource ExpanderContentMargin}">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <!-- Is roadside enabled for car parking -->
+            <Label Grid.Row="0" Grid.Column="0">
+                Is Enabled
+            </Label>
+            <CheckBox Grid.Row="0" Grid.Column="1"
+                      IsChecked="{Binding IsEnabled}" />
+
+            <!-- Offset for car parking areas on roadside -->
+            <Label Grid.Row="1" Grid.Column="0"
+                   IsEnabled="{Binding IsEnabled}">
+                Offset
+            </Label>
+            <StackPanel Grid.Row="1" Grid.Column="1"
+                        IsEnabled="{Binding IsEnabled}">
+                <Slider x:Name="RoadEdgeSafeParamSlider"
+                        Minimum="0.0" Maximum="{Binding MaxOffset}"
+                        Value="{Binding Offset}" />
+                <Grid>
+                    <Label HorizontalAlignment="Left" Style="{StaticResource SliderTickLabelStyle}">
+                        <TextBlock Text="{Binding ElementName=RoadEdgeSafeParamSlider, Path=Minimum, StringFormat={}{0:N2}m}" />
+                    </Label>
+                    <Label HorizontalAlignment="Right" Style="{StaticResource SliderTickLabelStyle}">
+                        <TextBlock Text="{Binding ElementName=RoadEdgeSafeParamSlider, Path=Maximum, StringFormat={}{0:N2}m}" />
+                    </Label>
+                    <Label HorizontalAlignment="Center" Style="{StaticResource SliderTickLabelStyle}">
+                        <TextBlock Text="{Binding ElementName=RoadEdgeSafeParamSlider, Path=Value, StringFormat={}{0:N2}m}" />
+                    </Label>
+                </Grid>
+            </StackPanel>
+        </Grid>
+    </Expander>
+</UserControl>

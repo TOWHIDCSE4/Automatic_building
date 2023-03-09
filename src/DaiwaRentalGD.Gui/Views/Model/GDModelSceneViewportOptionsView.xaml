@@ -1,0 +1,131 @@
+﻿<UserControl x:Class="DaiwaRentalGD.Gui.Views.Model.GDModelSceneViewportOptionsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Expander IsExpanded="True" Margin="5">
+            <Expander.Header>
+                <Label>
+                    View Options
+                </Label>
+            </Expander.Header>
+
+            <StackPanel Margin="{StaticResource ExpanderContentMargin}">
+                <!-- Slant planes view options -->
+                <Expander IsExpanded="True">
+                    <Expander.Header>
+                        <Label>
+                            Slant Planes
+                        </Label>
+                    </Expander.Header>
+
+                    <StackPanel Margin="{StaticResource ExpanderContentMargin}">
+                        <!-- Adjacent site slant planes -->
+                        <Expander IsExpanded="True">
+                            <Expander.Header>
+                                <Label>
+                                    Adjacent Site Slant Planes
+                                </Label>
+                            </Expander.Header>
+                            <StackPanel Margin="{StaticResource ExpanderContentMargin}"
+                                        Orientation="Horizontal">
+                                <CheckBox IsChecked="{Binding DoesShowAdjacentSiteSlantPlanes}">
+                                    <Label>Show Planes</Label>
+                                </CheckBox>
+                                <CheckBox IsChecked="{Binding DoesShowAdjacentSiteSlantPlanesViolations}">
+                                    <Label>Show Violations</Label>
+                                </CheckBox>
+                            </StackPanel>
+                        </Expander>
+
+                        <!-- Road slant planes -->
+                        <Expander IsExpanded="True">
+                            <Expander.Header>
+                                <Label>
+                                    Road Slant Planes
+                                </Label>
+                            </Expander.Header>
+                            <StackPanel Margin="{StaticResource ExpanderContentMargin}"
+                                        Orientation="Horizontal">
+                                <CheckBox IsChecked="{Binding DoesShowRoadSlantPlanes}">
+                                    <Label>Show Planes</Label>
+                                </CheckBox>
+                                <CheckBox IsChecked="{Binding DoesShowRoadSlantPlanesViolations}">
+                                    <Label>Show Violations</Label>
+                                </CheckBox>
+                            </StackPanel>
+                        </Expander>
+
+                        <!-- North slant planes -->
+                        <Expander IsExpanded="True">
+                            <Expander.Header>
+                                <Label>
+                                    North Slant Planes
+                                </Label>
+                            </Expander.Header>
+                            <StackPanel Margin="{StaticResource ExpanderContentMargin}"
+                                        Orientation="Horizontal">
+                                <CheckBox IsChecked="{Binding DoesShowNorthSlantPlanes}">
+                                    <Label>Show Planes</Label>
+                                </CheckBox>
+                                <CheckBox IsChecked="{Binding DoesShowNorthSlantPlanesViolations}">
+                                    <Label>Show Violations</Label>
+                                </CheckBox>
+                            </StackPanel>
+                        </Expander>
+                        <!-- Absolute Height Plane -->
+                        <Expander IsExpanded="True">
+                            <Expander.Header>
+                                <Label>
+                                    Absolute Height Plane
+
+                                </Label>
+                            </Expander.Header>
+                            <StackPanel Margin="{StaticResource ExpanderContentMargin}"
+                                        Orientation="Horizontal">
+                                <CheckBox IsChecked="{Binding DoesShowAbsoluteHeightPlane}">
+                                    <Label>Show Planes</Label>
+                                </CheckBox>
+                                <CheckBox IsChecked="{Binding DoesShowAbsoluteHeightPlaneViolations}">
+                                    <Label>Show Violations</Label>
+                                </CheckBox>
+                            </StackPanel>
+                        </Expander>
+
+
+
+                    </StackPanel>
+                </Expander>
+
+                <!-- Parking lot view options -->
+                <Expander IsExpanded="True">
+                    <Expander.Header>
+                        <Label>
+                            Parking Lots
+                        </Label>
+                    </Expander.Header>
+
+                    <StackPanel Margin="{StaticResource ExpanderContentMargin}" Orientation="Vertical">
+                        <CheckBox IsChecked="{Binding DoesShowWayTiles}">
+                            <Label>Show Way Tiles</Label>
+                        </CheckBox>
+
+                        <CheckBox IsChecked="{Binding DoesShowSiteVectorField}">
+                            <Label>Show Vector Fields</Label>
+                        </CheckBox>
+
+                        <CheckBox IsChecked="{Binding DoesShowWalkwayGraph}">
+                            <Label>Show Walkway Graph</Label>
+                        </CheckBox>
+
+                        <CheckBox IsChecked="{Binding DoesShowWalkwayPaths}">
+                            <Label>Show Walkway Paths</Label>
+                        </CheckBox>
+                    </StackPanel>
+                </Expander>
+            </StackPanel>
+        </Expander>
+    </ScrollViewer>
+</UserControl>

@@ -1,0 +1,210 @@
+﻿<Window x:Class="DaiwaRentalGD.Gui.Views.Model.GDModelSceneMainView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:ModelViews="clr-namespace:DaiwaRentalGD.Gui.Views.Model"
+        mc:Ignorable="d"
+        d:DesignWidth="1200" d:DesignHeight="800"
+        Title="Model - Daiwa House Rental Housing GD Prototype"
+        WindowState="Maximized"
+        DataContextChanged="Window_DataContextChanged"
+        MouseDown="Window_MouseDown">
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Menu -->
+        <Menu Grid.Row="0" Grid.Column="0">
+
+            <!-- File menu -->
+            <MenuItem>
+
+                <MenuItem.Header>
+                    _File
+                </MenuItem.Header>
+
+                <!-- File / New -->
+                <MenuItem>
+
+                    <MenuItem.Header>
+                        _New
+                    </MenuItem.Header>
+
+                    <!-- File / New / Model -->
+                    <MenuItem Command="{Binding CreateNewModelCommand}">
+                        <MenuItem.Header>
+                            _Model
+                        </MenuItem.Header>
+                    </MenuItem>
+
+                    <!-- File / New / Optimization -->
+                    <MenuItem Command="{Binding CreateNewOptimizationCommand}">
+                        <MenuItem.Header>
+                            _Optimization
+                        </MenuItem.Header>
+                    </MenuItem>
+
+                </MenuItem>
+
+                <!-- File / Load -->
+                <MenuItem>
+
+                    <MenuItem.Header>
+                        _Load
+                    </MenuItem.Header>
+
+                    <!-- File / Load / Model -->
+                    <MenuItem Command="{Binding LoadModelCommand}">
+                        <MenuItem.Header>
+                            _Model...
+                        </MenuItem.Header>
+                    </MenuItem>
+
+                    <!-- File / Load / Optimization -->
+                    <MenuItem IsEnabled="False">
+                        <MenuItem.Header>
+                            &#128274; _Optimization...
+                        </MenuItem.Header>
+                    </MenuItem>
+
+                </MenuItem>
+
+                <!-- File / Save -->
+                <MenuItem>
+
+                    <MenuItem.Header>
+                        _Save
+                    </MenuItem.Header>
+
+                    <!-- File / Save / Model -->
+                    <MenuItem Command="{Binding SaveModelCommand}">
+                        <MenuItem.Header>
+                            _Model...
+                        </MenuItem.Header>
+                    </MenuItem>
+
+                    <!-- File / Save / Optimization -->
+                    <MenuItem IsEnabled="False">
+                        <MenuItem.Header>
+                            &#128274; _Optimization...
+                        </MenuItem.Header>
+                    </MenuItem>
+
+                </MenuItem>
+
+                <Separator />
+
+                <!-- File / Exit -->
+                <MenuItem Command="{Binding ExitCommand}">
+                    <MenuItem.Header>
+                        E_xit
+                    </MenuItem.Header>
+                </MenuItem>
+
+            </MenuItem>
+
+            <!-- Help menu -->
+            <MenuItem>
+
+                <MenuItem.Header>
+                    _Help
+                </MenuItem.Header>
+
+                <!-- Help / About -->
+                <MenuItem Command="{Binding ShowAboutCommand}">
+                    <MenuItem.Header>
+                        About...
+                    </MenuItem.Header>
+                </MenuItem>
+
+            </MenuItem>
+
+        </Menu>
+
+        <!-- Work area -->
+        <Grid Grid.Row="1" Grid.Column="0">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="360" MinWidth="360" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="480" MinWidth="400" />
+            </Grid.ColumnDefinitions>
+
+            <!-- GD model scene data -->
+            <ModelViews:GDModelSceneDataView
+                Grid.Row="0" Grid.Column="0"
+                DataContext="{Binding GDModelSceneDataViewModel}">
+                <ModelViews:GDModelSceneDataView.Background>
+                    <SolidColorBrush Color="White" Opacity="0.5" />
+                </ModelViews:GDModelSceneDataView.Background>
+            </ModelViews:GDModelSceneDataView>
+
+            <!-- GD model scene viewport -->
+            <ModelViews:GDModelSceneViewportView
+                Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"
+                Panel.ZIndex="-100"
+                DataContext="{Binding GDModelSceneViewportViewModel}" />
+
+            <!-- GD model scene viewport options -->
+            <GroupBox Grid.Row="0" Grid.Column="1"
+                      VerticalAlignment="Top" HorizontalAlignment="Right">
+                <ModelViews:GDModelSceneViewportOptionsView
+                    Width="340"
+                    DataContext="{Binding GDModelSceneViewportOptionsViewModel}">
+                    <ModelViews:GDModelSceneViewportOptionsView.Background>
+                        <SolidColorBrush Color="White" Opacity="0.5" />
+                    </ModelViews:GDModelSceneViewportOptionsView.Background>
+                </ModelViews:GDModelSceneViewportOptionsView>
+            </GroupBox>
+
+            <!-- GD model scene inputs -->
+            <ModelViews:GDModelSceneInputsView
+                Grid.Row="0" Grid.Column="2"
+                DataContext="{Binding GDModelSceneInputsViewModel}">
+                <ModelViews:GDModelSceneInputsView.Background>
+                    <SolidColorBrush Color="White" Opacity="0.5" />
+                </ModelViews:GDModelSceneInputsView.Background>
+            </ModelViews:GDModelSceneInputsView>
+
+            <!-- Splitter between GD model scene data and viewport -->
+            <GridSplitter Grid.Row="0" Grid.Column="0"
+                          HorizontalAlignment="Right" VerticalAlignment="Stretch"
+                          Width="5">
+                <GridSplitter.Background>
+                    <SolidColorBrush Color="Transparent" />
+                </GridSplitter.Background>
+            </GridSplitter>
+
+            <!-- Splitter between GD model scene viewport and inputs -->
+            <GridSplitter Grid.Row="0" Grid.Column="1"
+                          HorizontalAlignment="Right" VerticalAlignment="Stretch"
+                          Width="5">
+                <GridSplitter.Background>
+                    <SolidColorBrush Color="Transparent" />
+                </GridSplitter.Background>
+            </GridSplitter>
+
+        </Grid>
+
+        <!-- Status bar -->
+        <StatusBar Grid.Row="2" Grid.Column="0">
+            <StatusBarItem>
+                <Label>
+                    <TextBlock Text="{Binding StatusText}" />
+                </Label>
+            </StatusBarItem>
+        </StatusBar>
+
+        <!-- Separator between work area and status bar -->
+        <Separator Grid.Row="2" Grid.Column="0"
+                   HorizontalAlignment="Stretch" VerticalAlignment="Top" />
+
+    </Grid>
+
+</Window>
